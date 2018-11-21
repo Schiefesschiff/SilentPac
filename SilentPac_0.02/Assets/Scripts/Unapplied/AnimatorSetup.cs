@@ -25,4 +25,3 @@ public class AnimatorSetup
         anim.SetFloat("AngularSpeed", angularSpeed, angularSpeedDampTime, Time.deltaTime);
     }
 
-}
