@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
 {
+    public Transform deadZone = 5f;
 
 
 }
