@@ -11,17 +11,18 @@ public class AnimatorSetup
     private Animator anim;
     private string stringName;
 
-    public AnimatorSetup(Animator animator , string _stringName)
+    public AnimatorSetup(Animator animator, string _stringName)
     {
         anim = animator;
         stringName = _stringName;
     }
 
-    public void Setup(float speed , float angle)
+    public void Setup(float speed, float angle)
     {
         float angularSpeed = angle / angleResponseTime;
 
         anim.SetFloat("Speed", speed, speedDampTime, Time.deltaTime);
         anim.SetFloat("AngularSpeed", angularSpeed, angularSpeedDampTime, Time.deltaTime);
     }
+}
 
