@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class EnemyAnimation : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class EnemyAnimation : MonoBehaviour
     private Animator anim;
     private AnimatorSetup animSetup;
 
+    public ThirdPersonCharacter character;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -21,8 +24,19 @@ public class EnemyAnimation : MonoBehaviour
         anim = GetComponent<Animator>();
 
         nav.updateRotation = false;
-        //   animSetup = new AnimatorSetup (anim,)
+        animSetup = new AnimatorSetup(anim);
         deadZone *= Mathf.Deg2Rad;
+    }
+
+    private void Update()
+    {
+        NavAnimSetup();
+    }
+
+    private void OnAnimatorMove()
+    {
+        nav.velocity = anim.deltaPosition / Time.deltaTime;
+        transform.rotation = anim.rootRotation;
     }
 
     void NavAnimSetup()
@@ -44,7 +58,7 @@ public class EnemyAnimation : MonoBehaviour
 
             if (Mathf.Abs(angle) < deadZone)
             {
-                transform.LookAt(transform.position + nav.desiredVelocity);
+                transform.LookAt(transform.position + nav.desiredVelocity);     // control navMesgh lookat function
                 angle = 0f;
             }
         }
@@ -54,16 +68,16 @@ public class EnemyAnimation : MonoBehaviour
 
     float FindAngle(Vector3 fromVector, Vector3 toVector, Vector3 upVector)
     {
-        if (toVector == Vector3.zero)
+        if (toVector == Vector3.zero)       // is enemy move 
         {
-            return 0f;
+            return 0f;                      // yes then return 0
         }
 
-        float angle = Vector3.Angle(fromVector, toVector);
-        Vector3 normal = Vector3.Cross(fromVector, toVector);
+        float angle = Vector3.Angle(fromVector, toVector);          
+        Vector3 normal = Vector3.Cross(fromVector, toVector);       // is he right or left
         angle *= Mathf.Sign(Vector3.Dot(normal, upVector));
         angle *= Mathf.Deg2Rad;
-
+        print("angle "+angle);
         return angle;
     }
 

@@ -26,7 +26,7 @@ public class LastPlayerSighting : MonoBehaviour
         GameObject[] sirenGameObjects = GameObject.FindGameObjectsWithTag("Siren");
         sirens = new AudioSource[sirenGameObjects.Length];
 
-        for (int i = 0; i < sirens.Length; i++)
+        for (int i = 0; i < sirens.Length; i++)     // added all finding sirens in array
         {
             sirens[i] = sirenGameObjects[i].GetComponent<AudioSource>();
         }
@@ -69,7 +69,7 @@ public class LastPlayerSighting : MonoBehaviour
         }
     }
 
-    void MusicFading()
+    void MusicFading()      //      music/alarmSound fading in and out with controlling volumen
     {
         if (position != resetPosition)
         {

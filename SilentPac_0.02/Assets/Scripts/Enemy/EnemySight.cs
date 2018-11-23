@@ -7,7 +7,7 @@ public class EnemySight : MonoBehaviour
 {
     public float fieldOfViewAngle = 110f;
     public bool playerInSight;
-    public Vector3 personalLastSighting;
+    public Vector3 personalLastSighting;        // position from hearing
 
     private NavMeshAgent nav;
     private SphereCollider col;
@@ -38,7 +38,7 @@ public class EnemySight : MonoBehaviour
             previousSighting = lastPlayerSighting.position;
         }
 
-        previousSighting = lastPlayerSighting.position;
+        //previousSighting = lastPlayerSighting.position;
 
         //if (playerHealth.health > 0)                  // player is death?
         //{
@@ -46,7 +46,7 @@ public class EnemySight : MonoBehaviour
         //}
         //else
         //{
-        //    anim.SetBool(INsightBool, false);
+        //    anim.SetBool(INsightBool, false);    << dann lauf weiter lauf weiter
         //}
     }
 

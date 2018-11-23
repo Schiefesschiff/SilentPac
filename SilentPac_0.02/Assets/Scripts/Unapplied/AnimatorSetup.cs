@@ -9,12 +9,12 @@ public class AnimatorSetup
     public float angleResponseTime = 0.6f;
 
     private Animator anim;
-    private string stringName;
+    //private string stringName;
 
-    public AnimatorSetup(Animator animator, string _stringName)
+    public AnimatorSetup(Animator animator)
     {
         anim = animator;
-        stringName = _stringName;
+        //stringName = _stringName;
     }
 
     public void Setup(float speed, float angle)
