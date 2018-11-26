@@ -21,8 +21,8 @@ public class AnimatorSetup
     {
         float angularSpeed = angle / angleResponseTime;
 
-        anim.SetFloat("Speed", speed, speedDampTime, Time.deltaTime);
-        anim.SetFloat("AngularSpeed", angularSpeed, angularSpeedDampTime, Time.deltaTime);
+        anim.SetFloat("Forward", speed, speedDampTime, Time.deltaTime);
+        anim.SetFloat("Turn", angularSpeed, angularSpeedDampTime, Time.deltaTime);
     }
 }
 

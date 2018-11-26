@@ -65,7 +65,6 @@ public class CharMovement : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            print("ttttttttttttttttttttt");
             CharAni.SetTrigger("OutTurn");
         }
     }

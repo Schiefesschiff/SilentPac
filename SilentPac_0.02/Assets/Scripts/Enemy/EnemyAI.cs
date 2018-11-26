@@ -2,31 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityStandardAssets.Characters.ThirdPerson;
+
 
 public class EnemyAI : MonoBehaviour
 {
-
-    public float patrolSpeed = 2f;
-    public float chaseSpeed = 5f;
+    
+    public float patrolSpeed = 1f;
+    public float chaseSpeed = 2f;
     public float chaseWaitTime = 5;
     public float patrolWaitTime = 1f;
     public Transform[] patrolWayPoints;
 
+    private float currentSpeed = 1f;
     private EnemySight enemySight;
     private NavMeshAgent nav;
     private Transform player;
+    private Animator anim;
     private LastPlayerSighting lastPlayerSighting;
     private float chaseTimer;
     private float patrolTimer;
     private int wayPointIndex;
 
+    private ThirdPersonCharacter character;
 
     private void Awake()
     {
+        character = GetComponent<ThirdPersonCharacter>();
         enemySight = GetComponent<EnemySight>();
         nav = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         lastPlayerSighting = GameObject.FindGameObjectWithTag("GameController").GetComponent<LastPlayerSighting>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -37,18 +44,43 @@ public class EnemyAI : MonoBehaviour
         }
         else if (enemySight.personalLastSighting != lastPlayerSighting.resetPosition)
         {
-            Chasing();
+            //nav.isStopped = false;
+            Chasing();                                      
         }
         else
         {
+            //nav.isStopped = false;
             Patrolling();
         }
 
+        if (nav.remainingDistance > nav.stoppingDistance)       // distance between enemy / player
+        {
+            character.Move(nav.desiredVelocity, false, false, currentSpeed);      // for third person controller(animation)
+        }
+        else
+        {
+            character.Move(Vector3.zero, false, false, currentSpeed);
+        }
     }
 
     void Attacking()
     {
-        nav.isStopped = true;
+        nav.speed = chaseSpeed;
+        currentSpeed = chaseSpeed;
+
+        if (nav.remainingDistance < nav.stoppingDistance)
+        {
+            print("an dieser stelle attack!!!!!!!!!!!");
+            //nav.isStopped = true;
+            anim.SetBool("Attack",true);
+        }
+        else
+        {
+            anim.SetBool("Attack", false);
+        }
+
+        nav.destination = player.transform.position;
+
     }
 
     void Chasing()
@@ -61,12 +93,18 @@ public class EnemyAI : MonoBehaviour
         }
 
         nav.speed = chaseSpeed;
+        currentSpeed = chaseSpeed;
 
         if (nav.remainingDistance < nav.stoppingDistance)
         {
-            lastPlayerSighting.position = lastPlayerSighting.resetPosition;
-            enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
-            chaseTimer = 0f;
+            chaseTimer += Time.deltaTime;
+
+            if (chaseTimer > chaseWaitTime)
+            {
+               lastPlayerSighting.position = lastPlayerSighting.resetPosition;
+               enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
+               chaseTimer = 0f;
+            }
         }
         else
         {
@@ -77,13 +115,14 @@ public class EnemyAI : MonoBehaviour
     void Patrolling()
     {
         nav.speed = patrolSpeed;
+        currentSpeed = patrolSpeed;
 
         if (nav.destination == lastPlayerSighting.resetPosition || nav.remainingDistance < nav.stoppingDistance)
         {
-            patrolTimer += Time.deltaTime;
+            //patrolTimer += Time.deltaTime;
 
-            if (patrolTimer >= patrolWaitTime)
-            {
+            //if (patrolTimer >= patrolWaitTime)
+            //{
                 if (wayPointIndex == patrolWayPoints.Length - 1)
                 {
                     wayPointIndex = 0;
@@ -92,12 +131,12 @@ public class EnemyAI : MonoBehaviour
                 {
                     wayPointIndex++;
                 }
-                patrolTimer = 0;
-            }
+                //patrolTimer = 0;
+            //}
         }
         else
         {
-            patrolTimer = 0f;
+            //patrolTimer = 0f;
         }
         nav.destination = patrolWayPoints[wayPointIndex].position;
     }

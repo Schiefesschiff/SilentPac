@@ -8,6 +8,7 @@ TagManager:
   - Siren
   - MainLight
   - AlarmLight
+  - Ground
   layers:
   - Default
   - TransparentFX
