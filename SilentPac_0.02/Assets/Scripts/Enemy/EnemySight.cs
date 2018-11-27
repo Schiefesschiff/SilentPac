@@ -78,7 +78,7 @@ public class EnemySight : MonoBehaviour
                 // tdo player is shoot?
                 if (playerAnim.GetBool("Sprint"))       //ToDO  jump , Walkking
                 {
-                    if (CalculatePathLength(player.transform.position) <= col.radius)       // player inside sphereCollider?
+                    if (CalculatePathLength(player.transform.position) <= col.radius)       // 
                     {
                         personalLastSighting = player.transform.position;
                     }

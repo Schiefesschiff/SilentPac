@@ -12,6 +12,9 @@ public class EnemyAI : MonoBehaviour
     public float chaseSpeed = 2f;
     public float chaseWaitTime = 5;
     public float patrolWaitTime = 1f;
+
+    public float SearchingRadius = 3;
+
     public Transform[] patrolWayPoints;
 
     private float currentSpeed = 1f;
@@ -97,6 +100,9 @@ public class EnemyAI : MonoBehaviour
 
         if (nav.remainingDistance < nav.stoppingDistance)
         {
+
+            SearchingPlayer();
+
             chaseTimer += Time.deltaTime;
 
             if (chaseTimer > chaseWaitTime)
@@ -105,11 +111,35 @@ public class EnemyAI : MonoBehaviour
                enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
                chaseTimer = 0f;
             }
+
+
         }
         else
         {
-            chaseTimer = 0f;
+             chaseTimer = 0f;
         }
+    }
+
+    void SearchingPlayer()
+    {
+            print("´SearchingPlayer Rando Function");
+            Vector3 randomPoint = transform.position + Random.insideUnitSphere * SearchingRadius;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                nav.destination = hit.position;
+
+            }
+            testPoint = randomPoint;
+        
+    }
+    Vector3 testPoint = new Vector3 (0,0,10);
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(testPoint, 1);
     }
 
     void Patrolling()
