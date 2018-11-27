@@ -60,13 +60,16 @@ public class EnemySight : MonoBehaviour
 
                 if (angle < fieldOfViewAngle * 0.5f)
                 {
-                    RaycastHit hit;
+                print("test player in collider1111111111111111111111111111111111111");
+
+                RaycastHit hit;
 
                     // raycast +1hight (transform.up) and collder radius
                     if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, col.radius))
                     {
                         if (hit.collider.gameObject == player)
                         {
+                        print("test player in collider");
                             playerInSight = true;
                             lastPlayerSighting.position = player.transform.position; // alarm 
                         }

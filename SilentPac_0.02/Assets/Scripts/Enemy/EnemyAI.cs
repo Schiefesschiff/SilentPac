@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
     public float chaseSpeed = 2f;
     public float chaseWaitTime = 5;
     public float patrolWaitTime = 1f;
+    public int SearchingPoints = 3;
 
     public float SearchingRadius = 3;
 
@@ -26,6 +27,8 @@ public class EnemyAI : MonoBehaviour
     private float chaseTimer;
     private float patrolTimer;
     private int wayPointIndex;
+    private int SearchingPointIndex = 0;
+
 
     private ThirdPersonCharacter character;
 
@@ -45,16 +48,15 @@ public class EnemyAI : MonoBehaviour
         {
             Attacking();
         }
-        else if (enemySight.personalLastSighting != lastPlayerSighting.resetPosition)
+        else if (enemySight.personalLastSighting != lastPlayerSighting.resetPosition)      
         {
-            //nav.isStopped = false;
-            Chasing();                                      
+            Chasing();
         }
         else
         {
-            //nav.isStopped = false;
             Patrolling();
         }
+
 
         if (nav.remainingDistance > nav.stoppingDistance)       // distance between enemy / player
         {
@@ -65,6 +67,7 @@ public class EnemyAI : MonoBehaviour
             character.Move(Vector3.zero, false, false, currentSpeed);
         }
     }
+
 
     void Attacking()
     {
@@ -100,19 +103,22 @@ public class EnemyAI : MonoBehaviour
 
         if (nav.remainingDistance < nav.stoppingDistance)
         {
-
-            SearchingPlayer();
-
             chaseTimer += Time.deltaTime;
 
             if (chaseTimer > chaseWaitTime)
             {
-               lastPlayerSighting.position = lastPlayerSighting.resetPosition;
-               enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
-               chaseTimer = 0f;
+                if (SearchingPointIndex >= SearchingPoints)     // how mny points for searching
+                {
+                    lastPlayerSighting.position = lastPlayerSighting.resetPosition;
+                    enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
+                    chaseTimer = 0f;
+                    SearchingPointIndex = 0;
+                }
+                else
+                {
+                    SearchingPlayer();
+                }
             }
-
-
         }
         else
         {
@@ -120,19 +126,25 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    void SearchingPlayer()
+    void SearchingPlayer()      // random points on NavMeshPlane for navAgent
     {
             print("´SearchingPlayer Rando Function");
             Vector3 randomPoint = transform.position + Random.insideUnitSphere * SearchingRadius;
+
+            // is random distanz to next radom point
+
+
             NavMeshHit hit;
             if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
             {
                 nav.destination = hit.position;
-
+                enemySight.personalLastSighting = hit.position;
+                SearchingPointIndex++;
             }
             testPoint = randomPoint;
         
     }
+
     Vector3 testPoint = new Vector3 (0,0,10);
 
     void OnDrawGizmosSelected()
