@@ -11,7 +11,7 @@ public class CharMovement : MonoBehaviour
     public AudioClip LaborStep;
 
     float countdown;
-    float CountdownFootStopes;
+    float CountdownFootSteps;
 
     public float CountdownFootStepSprint;       // abfrage genug zeit vergangen seit letztem footstep?
     public float CountdownFootStep;
@@ -23,7 +23,7 @@ public class CharMovement : MonoBehaviour
     bool running = false;
 
     public bool StopMovement;
-
+    
 
     void Start()
     {
@@ -35,15 +35,16 @@ public class CharMovement : MonoBehaviour
 
     private void Update()
     {
-        MouseX = Input.GetAxis("Mouse X"); // deaktiviert bei bewegung die drehung 
+        // MouseX = Input.GetAxis("Mouse X"); // deaktiviert bei bewegung die drehung
+        MouseX = Input.GetAxis(StringCollection.INPUT_RHORIZONTAL); // deaktiviert bei bewegung die drehung, jetzt vom Controller RStick (Horizontal) aus.
         Countdown();
-        CountdownFootStopes += Time.deltaTime;
+        CountdownFootSteps += Time.deltaTime;
 
             RunningFunction();
             CrouchFunction();
             JumpFunction();
-            InputControlls();
-            MouseTurn();
+            //InputControls();
+            //MouseTurn();
 
     }
 
@@ -61,7 +62,7 @@ public class CharMovement : MonoBehaviour
         }
     }
 
-    void InputControlls()
+    void InputControls()
     {
         if (Input.anyKeyDown)
         {
@@ -72,7 +73,7 @@ public class CharMovement : MonoBehaviour
 
     void RunningFunction()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetAxis(StringCollection.INPUT_LT) != 0 || Input.GetKey(KeyCode.LeftShift))
         {
             CharAni.SetBool("Sprint", true);
             running = true;
@@ -83,9 +84,10 @@ public class CharMovement : MonoBehaviour
             running = false;
         }
     }
+    
     void CrouchFunction()
     {
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetButtonDown(StringCollection.INPUT_X) || Input.GetKey(KeyCode.LeftControl))
         {
             CharAni.SetBool("Crouch", true);
             capcollider.height = 1.24f;
@@ -99,10 +101,10 @@ public class CharMovement : MonoBehaviour
 
         }
     }
-
+    
     void JumpFunction()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown(StringCollection.INPUT_B) || Input.GetKeyDown(KeyCode.Space))
         {
             if (running)
             {
@@ -114,6 +116,7 @@ public class CharMovement : MonoBehaviour
             }
         }
     }
+
     void Countdown()
     {
         if (Input.anyKey)
@@ -125,25 +128,23 @@ public class CharMovement : MonoBehaviour
             countdown += Time.deltaTime;
         }
     }
-
-
-
+    
     void StepSound()            // wird von animation event ausgelöst 
     {
         if (Input.anyKey || MouseX < -0.3 || MouseX > 0.3 )
         {
-            if (CountdownFootStopes >= CountdownFootStep)
+            if (CountdownFootSteps >= CountdownFootStep)
             {
                 AudioSource.PlayClipAtPoint(CurrentClip, transform.position, volumen);
-                CountdownFootStopes = 0;
+                CountdownFootSteps = 0;
             }
         }
         else if (countdown <= 0.4f)             // verzögerung des letzten schrittes 
         {
-            if (CountdownFootStopes >= CountdownFootStep)
+            if (CountdownFootSteps >= CountdownFootStep)
             {
                 AudioSource.PlayClipAtPoint(CurrentClip, transform.position, volumen);
-                CountdownFootStopes = 0;
+                CountdownFootSteps = 0;
             }
         }
 
@@ -153,18 +154,18 @@ public class CharMovement : MonoBehaviour
     {
         if (Input.anyKey || MouseX < -0.3 || MouseX > 0.3)
         {
-            if (CountdownFootStopes >= CountdownFootStepSprint)
+            if (CountdownFootSteps >= CountdownFootStepSprint)
             {
                 AudioSource.PlayClipAtPoint(CurrentClip, transform.position, volumen);
-                CountdownFootStopes = 0;
+                CountdownFootSteps = 0;
             }
         }
         else if (countdown <= 0.3f)             // verzögerung des letzten schrittes
         {
-            if (CountdownFootStopes >= CountdownFootStepSprint)
+            if (CountdownFootSteps >= CountdownFootStepSprint)
             {
                 AudioSource.PlayClipAtPoint(CurrentClip, transform.position, volumen);
-                CountdownFootStopes = 0;
+                CountdownFootSteps = 0;
             }
         }
     }  
@@ -174,12 +175,12 @@ public class CharMovement : MonoBehaviour
         if (Input.anyKey || MouseX < -0.3 || MouseX > 0.3)
         {
             AudioSource.PlayClipAtPoint(CrouchSteps, transform.position, volumen);
-            CountdownFootStopes = 0;
+            CountdownFootSteps = 0;
         }
         else if (countdown <= 0.3f)             // verzögerung des letzten schrittes
         {
             AudioSource.PlayClipAtPoint(CrouchSteps, transform.position, volumen);
-            CountdownFootStopes = 0;
+            CountdownFootSteps = 0;
         }
 
     }

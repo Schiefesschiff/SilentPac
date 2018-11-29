@@ -75,8 +75,8 @@ public class EnemySight : MonoBehaviour
                 }
 
                 // todo player animator in bewegung?
-                // tdo player is shoot?
-                if (playerAnim.GetBool("Sprint"))       //ToDO  jump , Walkking
+                // todo player is shoot?
+                if (playerAnim.GetBool("Sprint"))       //ToDO  jump , Walking
                 {
                     if (CalculatePathLength(player.transform.position) <= col.radius)       // player inside sphereCollider?
                     {
