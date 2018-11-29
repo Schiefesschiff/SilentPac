@@ -7,12 +7,12 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class EnemyAI : MonoBehaviour
 {
-    
-    public float patrolSpeed = 1f;
-    public float chaseSpeed = 2f;
-    public float chaseWaitTime = 5;
-    public float patrolWaitTime = 1f;
-    public int SearchingPoints = 3;
+
+    [SerializeField] private  float patrolSpeed = 1f;
+    [SerializeField] private float chaseSpeed = 2f;
+    [SerializeField] private float chaseWaitTime = 5;
+    [SerializeField] private float patrolWaitTime = 1f;
+    [SerializeField] private int SearchingPoints = 3;
 
     public float SearchingRadius = 3;
 

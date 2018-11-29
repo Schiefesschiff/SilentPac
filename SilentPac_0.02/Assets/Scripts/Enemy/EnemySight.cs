@@ -69,7 +69,7 @@ public class EnemySight : MonoBehaviour
                     {
                         if (hit.collider.gameObject == player)
                         {
-                        print("test player in collider");
+                            print("test Raycast hit Player");
                             playerInSight = true;
                             lastPlayerSighting.position = player.transform.position; // alarm 
                         }
@@ -79,7 +79,7 @@ public class EnemySight : MonoBehaviour
 
                 // todo player animator in bewegung?
                 // tdo player is shoot?
-                if (playerAnim.GetBool("Sprint"))       //ToDO  jump , Walkking
+                if (playerAnim.GetBool("Run"))       //ToDO  jump , Walkking
                 {
                     if (CalculatePathLength(player.transform.position) <= col.radius)       // 
                     {
