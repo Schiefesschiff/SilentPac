@@ -9,6 +9,8 @@ TagManager:
   - MainLight
   - AlarmLight
   - Ground
+  - Door
+  - Dooropener
   layers:
   - Default
   - TransparentFX

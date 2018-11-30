@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetDirection = new Vector3(horizontal, 0, vertical);
                      
         Vector3 worldDirection = transform.TransformDirection(targetDirection);
-        print(worldDirection);
+        //print(worldDirection);
         //targetDirection = transform.TransformPoint(targetDirection); from word to local
         Quaternion targetRotation = Quaternion.LookRotation(worldDirection, transform.up);
         

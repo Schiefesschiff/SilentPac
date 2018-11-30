@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyPickup : MonoBehaviour
+public class FusePickup : MonoBehaviour
 {
     //public AudioClip keyGrab;
 
@@ -21,13 +21,12 @@ public class KeyPickup : MonoBehaviour
         if (other.gameObject == player)
         {
             //AudioSource.PlayClipAtPoint(keyGrab, transform.position);
-            playerInventory.hasKey = true;
+            playerInventory.hasFuse = true;
+            Debug.Log("fuse says bye");
             Destroy(gameObject);
-                
+
         }
-
-
+        
     }
-
 
 }

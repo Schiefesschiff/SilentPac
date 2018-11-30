@@ -6,5 +6,12 @@ public class PlayerInventory : MonoBehaviour
 {
     public bool hasKey;
     public bool hasFuse;
+
+    void Awake()
+    {
+        hasKey = false;
+        hasFuse = false;
+    }
+
     
 }
