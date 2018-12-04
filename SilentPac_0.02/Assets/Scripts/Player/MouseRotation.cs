@@ -25,7 +25,7 @@ public class MouseRotation : MonoBehaviour
 
     //public float frameCounter = 20;
 
-    Quaternion originalRotation;
+    private Quaternion originalRotation;
 
     void Update()
     {
@@ -34,38 +34,41 @@ public class MouseRotation : MonoBehaviour
         //rotAverageX = 0f;
 
 
-            rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-            rotationX += Input.GetAxis("Mouse X") * sensitivityX;
+        rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+        rotationX += Input.GetAxis("Mouse X") * sensitivityX;
 
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  für die Smoothness  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        rotationY += Input.GetAxis(StringCollection.INPUT_RVERTICAL) * sensitivityY;
+        rotationX += Input.GetAxis(StringCollection.INPUT_RHORIZONTAL) * sensitivityX;
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  für die Smoothness  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-            //rotArrayY.Add(rotationY);
-            //rotArrayX.Add(rotationX);
+        //rotArrayY.Add(rotationY);
+        //rotArrayX.Add(rotationX);
 
-            //if (rotArrayY.Count >= frameCounter)
-            //{
-            //    rotArrayY.RemoveAt(0);
-            //}
-            //if (rotArrayX.Count >= frameCounter)
-                //{
-                //    rotArrayX.RemoveAt(0);
-                //}
+        //if (rotArrayY.Count >= frameCounter)
+        //{
+        //    rotArrayY.RemoveAt(0);
+        //}
+        //if (rotArrayX.Count >= frameCounter)
+        //{
+        //    rotArrayX.RemoveAt(0);
+        //}
 
-                //for (int j = 0; j < rotArrayY.Count; j++)
-                //{
-                //    rotAverageY += rotArrayY[j];
-                //}
-                //for (int i = 0; i < rotArrayX.Count; i++)
-                //{
-                //    rotAverageX += rotArrayX[i];
-                //}
+        //for (int j = 0; j < rotArrayY.Count; j++)
+        //{
+        //    rotAverageY += rotArrayY[j];
+        //}
+        //for (int i = 0; i < rotArrayX.Count; i++)
+        //{
+        //    rotAverageX += rotArrayX[i];
+        //}
 
-                //rotAverageY /= rotArrayY.Count;
-                //rotAverageX /= rotArrayX.Count;
+        //rotAverageY /= rotArrayY.Count;
+        //rotAverageX /= rotArrayX.Count;
 
-                //rotAverageY = ClampAngle(rotAverageY, minimumY, maximumY);
-                //rotAverageX = ClampAngle(rotAverageX, minimumX, maximumX);
+        //rotAverageY = ClampAngle(rotAverageY, minimumY, maximumY);
+        //rotAverageX = ClampAngle(rotAverageX, minimumX, maximumX);
 
             rotationY = ClampAngle(rotationY, minimumY, maximumY);
             rotationX = ClampAngle(rotationX, minimumX, maximumX);

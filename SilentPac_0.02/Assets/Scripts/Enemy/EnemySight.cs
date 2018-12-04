@@ -60,13 +60,16 @@ public class EnemySight : MonoBehaviour
 
                 if (angle < fieldOfViewAngle * 0.5f)
                 {
-                    RaycastHit hit;
+                print("test player in collider1111111111111111111111111111111111111");
+
+                RaycastHit hit;
 
                     // raycast +1hight (transform.up) and collder radius
                     if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, col.radius))
                     {
                         if (hit.collider.gameObject == player)
                         {
+                            print("test Raycast hit Player");
                             playerInSight = true;
                             lastPlayerSighting.position = player.transform.position; // alarm 
                         }
@@ -76,9 +79,9 @@ public class EnemySight : MonoBehaviour
 
                 // todo player animator in bewegung?
                 // tdo player is shoot?
-                if (playerAnim.GetBool("Sprint"))       //ToDO  jump , Walkking
+                if (playerAnim.GetBool("Run"))       //ToDO  jump , Walkking
                 {
-                    if (CalculatePathLength(player.transform.position) <= col.radius)       // player inside sphereCollider?
+                    if (CalculatePathLength(player.transform.position) <= col.radius)       // 
                     {
                         personalLastSighting = player.transform.position;
                     }

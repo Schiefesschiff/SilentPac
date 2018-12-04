@@ -7,41 +7,89 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class PlayerController : MonoBehaviour
 {
-    public Camera cam;
-    public NavMeshAgent nav;
+    public float  turnSpeed = 10f;
+    public float speedDampTime = 0.1f;
 
-    public ThirdPersonCharacter character;
+    private Vector2 input;
+    private float angle;
+    private Animator anim;
 
-    [Range(0.5f, 1f)] [SerializeField] float speed = 0.5f;
+    private float ForwardSpeed;
+    private Quaternion targetRotation;
+    private Transform cam;
+    private bool run;
 
-    void Start()
+    private void Start()
     {
-        
+        cam = Camera.main.transform.transform;
+        anim = GetComponent<Animator>();
+    }
+       
+    private void Update()
+    {
+        GetInput();
+        Run(run);
+
+        if (input.x != 0f || input.y != 0f)
+        {
+            CalculateDirection();
+            Rotation();
+        }
+        Move();
     }
 
-
-    void Update()
+    // input base on horizontal (a,b,<,>) and vertical(w,s,^,v) keys
+    void GetInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        input.x = Input.GetAxisRaw(StringCollection.INPUT_HORIZONTAL);
+        input.y = Input.GetAxisRaw(StringCollection.INPUT_VERTICAL);
+        //print(input);
+        run = Input.GetButton(StringCollection.INPUT_RB);      // b 
+
+
+    }
+
+    void Run(bool isRun)
+    {
+        if (isRun)
         {
-
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                nav.SetDestination(hit.point);
-            }
-        }
-
-        if (nav.remainingDistance > nav.stoppingDistance)       // distance between enemy / player
-        {
-            character.Move(nav.desiredVelocity, false, false, speed);      // for third person controller(animation)
+            anim.SetBool("Run", true);
         }
         else
         {
-            character.Move(Vector3.zero, false, false, speed);
+            anim.SetBool("Run", false);
         }
+    }
 
+    // direction relativ to the camera`s Rotation
+    void CalculateDirection()
+    {
+        angle = Mathf.Atan2(input.x, input.y);              // give Radians back
+        angle = Mathf.Rad2Deg * angle;                      // make radians to degrees
+        angle += cam.eulerAngles.y;                         // rotation relative to camera
+    }
+
+    //rotate toward the calculate angle
+    void Rotation()
+    {
+        targetRotation = Quaternion.Euler(0, angle, 0);     // convert the euler angels to Quaternion
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+        
+    }
+
+    // this Player only move along its forward axis
+    void Move()
+    {
+        CalculateSpeed(input);
+
+        //transform.position += transform.forward * velocity * Time.deltaTime;
+        anim.SetFloat("Vertical", ForwardSpeed, speedDampTime, Time.deltaTime);
+
+    }
+
+    void CalculateSpeed(Vector2 input)
+    {
+        ForwardSpeed = Mathf.Sqrt(input.x * input.x + input.y * input.y);      // speed from stick ( controller)
+        //print(ForwardSpeed);
     }
 }
