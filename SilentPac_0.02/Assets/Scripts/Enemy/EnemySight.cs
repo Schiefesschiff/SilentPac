@@ -35,10 +35,10 @@ public class EnemySight : MonoBehaviour
     {
         if (lastPlayerSighting.position != previousSighting)
         {
-            previousSighting = lastPlayerSighting.position;
+            personalLastSighting = lastPlayerSighting.position;
         }
 
-        //previousSighting = lastPlayerSighting.position;
+        previousSighting = lastPlayerSighting.position;
 
         //if (playerHealth.health > 0)                  // player is death?
         //{
@@ -50,7 +50,7 @@ public class EnemySight : MonoBehaviour
         //}
     }
 
-        void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider other)
         {
             if (other.gameObject == player)
             {
@@ -58,11 +58,14 @@ public class EnemySight : MonoBehaviour
                 Vector3 direction = other.transform.position - transform.position;
                 float angle = Vector3.Angle(direction, transform.forward);
 
+
                 if (angle < fieldOfViewAngle * 0.5f)
                 {
-                print("test player in collider1111111111111111111111111111111111111");
+                    print("test player in collider1111111111111111111111111111111111111");
 
-                RaycastHit hit;
+                    RaycastHit hit;
+
+                    Debug.DrawLine(transform.position, player.transform.position + transform.up, Color.red);
 
                     // raycast +1hight (transform.up) and collder radius
                     if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, col.radius))

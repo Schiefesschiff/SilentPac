@@ -11,7 +11,8 @@ public class LastPlayerSighting : MonoBehaviour
     public float fadeSpeed = 7f;
     public float musicFadeSpeed = 1f;
 
-    private AlarmLight alarm;
+    private CameraController camCon;
+    private AlarmLight alarmLight;
     private Light mainLight;
     private AudioSource normalAudio;
     private AudioSource panicAudio;
@@ -21,8 +22,10 @@ public class LastPlayerSighting : MonoBehaviour
     {
         normalAudio = GetComponent<AudioSource>();
         panicAudio = transform.Find("secondaryMusic").GetComponent<AudioSource>();
-        alarm = GameObject.FindGameObjectWithTag("AlarmLight").GetComponent<AlarmLight>();
+        alarmLight = GameObject.FindGameObjectWithTag("AlarmLight").GetComponent<AlarmLight>();
         mainLight = GameObject.FindGameObjectWithTag("MainLight").GetComponent<Light>();
+        camCon = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+
         GameObject[] sirenGameObjects = GameObject.FindGameObjectsWithTag("Siren");
         sirens = new AudioSource[sirenGameObjects.Length];
 
@@ -41,7 +44,8 @@ public class LastPlayerSighting : MonoBehaviour
 
     void SwitchAlarms()
     {
-        alarm.alarmOn = (position != resetPosition);
+        alarmLight.alarmOn = (position != resetPosition);
+        camCon.Alarm = (position != resetPosition);
 
         float newIntensity;
 

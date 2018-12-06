@@ -52,21 +52,26 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //float heading = (Mathf.Atan2(horizontal, vertical) * Mathf.Rad2Deg);    //  output = degrees
-
         //transform.rotation = Quaternion.Euler(0f, 0f, heading * Mathf.Rad2Deg);
 
+
+
+
         Vector3 targetDirection = new Vector3(horizontal, 0, vertical);
-                     
+
         Vector3 worldDirection = transform.TransformDirection(targetDirection);
         //print(worldDirection);
-        //targetDirection = transform.TransformPoint(targetDirection); from word to local
         Quaternion targetRotation = Quaternion.LookRotation(worldDirection, transform.up);
-        
+        print(targetRotation);
         Quaternion newRotation = Quaternion.Slerp(rig.transform.rotation, targetRotation, turnSmoothing * Time.deltaTime);
         rig.MoveRotation(newRotation);
-    }
 
-    
+        //if (horizontal >= 0 || vertical >= 0)
+        //{
+        //    print("größer als");
+        //    transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Camera.main.transform.localEulerAngles.y, transform.localEulerAngles.z);
+        //}
+    }
 
 
 }
