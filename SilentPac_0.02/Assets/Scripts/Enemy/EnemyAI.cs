@@ -7,11 +7,15 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class EnemyAI : MonoBehaviour
 {
-    
-    public float patrolSpeed = 1f;
-    public float chaseSpeed = 2f;
-    public float chaseWaitTime = 5;
-    public float patrolWaitTime = 1f;
+
+    [SerializeField] private  float patrolSpeed = 1f;
+    [SerializeField] private float chaseSpeed = 2f;
+    [SerializeField] private float chaseWaitTime = 5;
+    [SerializeField] private float patrolWaitTime = 1f;
+    [SerializeField] private int SearchingPoints = 3;
+
+    public float SearchingRadius = 3;
+
     public Transform[] patrolWayPoints;
 
     private float currentSpeed = 1f;
@@ -23,6 +27,8 @@ public class EnemyAI : MonoBehaviour
     private float chaseTimer;
     private float patrolTimer;
     private int wayPointIndex;
+    private int SearchingPointIndex = 0;
+
 
     private ThirdPersonCharacter character;
 
@@ -42,16 +48,15 @@ public class EnemyAI : MonoBehaviour
         {
             Attacking();
         }
-        else if (enemySight.personalLastSighting != lastPlayerSighting.resetPosition)
+        else if (enemySight.personalLastSighting != lastPlayerSighting.resetPosition)      
         {
-            //nav.isStopped = false;
-            Chasing();                                      
+            Chasing();
         }
         else
         {
-            //nav.isStopped = false;
             Patrolling();
         }
+
 
         if (nav.remainingDistance > nav.stoppingDistance)       // distance between enemy / player
         {
@@ -62,6 +67,7 @@ public class EnemyAI : MonoBehaviour
             character.Move(Vector3.zero, false, false, currentSpeed);
         }
     }
+
 
     void Attacking()
     {
@@ -101,15 +107,51 @@ public class EnemyAI : MonoBehaviour
 
             if (chaseTimer > chaseWaitTime)
             {
-               lastPlayerSighting.position = lastPlayerSighting.resetPosition;
-               enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
-               chaseTimer = 0f;
+                if (SearchingPointIndex >= SearchingPoints)     // how mny points for searching
+                {
+                    lastPlayerSighting.position = lastPlayerSighting.resetPosition;
+                    enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
+                    chaseTimer = 0f;
+                    SearchingPointIndex = 0;
+                }
+                else
+                {
+                    SearchingPlayer();
+                }
             }
         }
         else
         {
-            chaseTimer = 0f;
+             chaseTimer = 0f;
         }
+    }
+
+    void SearchingPlayer()      // random points on NavMeshPlane for navAgent
+    {
+            print("´SearchingPlayer Rando Function");
+            Vector3 randomPoint = transform.position + Random.insideUnitSphere * SearchingRadius;
+
+            // is random distanz to next radom point
+
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                nav.destination = hit.position;
+                enemySight.personalLastSighting = hit.position;
+                SearchingPointIndex++;
+            }
+            testPoint = randomPoint;
+        
+    }
+
+    Vector3 testPoint = new Vector3 (0,0,10);
+
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(testPoint, 1);
     }
 
     void Patrolling()
