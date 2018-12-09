@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private Quaternion targetRotation;
     private Transform cam;
     private bool run;
-
+    private bool shoot;
     private void Start()
     {
         cam = Camera.main.transform.transform;
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         GetInput();
         Run(run);
+        Shoot(shoot);
 
         if (input.x != 0f || input.y != 0f)
         {
@@ -44,8 +45,8 @@ public class PlayerController : MonoBehaviour
         input.x = Input.GetAxisRaw(StringCollection.INPUT_HORIZONTAL);
         input.y = Input.GetAxisRaw(StringCollection.INPUT_VERTICAL);
         //print(input);
-        run = Input.GetButton(StringCollection.INPUT_RB);      // b 
-
+        run = Input.GetButton(StringCollection.INPUT_RB);      
+        shoot = Input.GetButton(StringCollection.INPUT_X);
 
     }
 
@@ -61,12 +62,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Shoot(bool shoot)
+    {
+        if (shoot)
+        {
+            anim.SetBool("Shoot", true);
+        }
+        else
+        {
+            anim.SetBool("Shoot", false);
+
+        }
+    }
+
     // direction relativ to the camera`s Rotation
     void CalculateDirection()
     {
         angle = Mathf.Atan2(input.x, input.y);              // give Radians back
         angle = Mathf.Rad2Deg * angle;                      // make radians to degrees
-        angle += cam.eulerAngles.y;                         // rotation relative to camera
+        angle += cam.eulerAngles.y;                         // rotation relative with camera
     }
 
     //rotate toward the calculate angle
@@ -81,7 +95,6 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         CalculateSpeed(input);
-
         //transform.position += transform.forward * velocity * Time.deltaTime;
         anim.SetFloat("Vertical", ForwardSpeed, speedDampTime, Time.deltaTime);
 
