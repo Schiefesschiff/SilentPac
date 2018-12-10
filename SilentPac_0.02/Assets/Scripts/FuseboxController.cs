@@ -11,6 +11,8 @@ public class FuseboxController : MonoBehaviour
     private PlayerInventory playerInventory;
     public GameObject dooropener;
     private DooropenerInteraction dooropenerInteraction;
+    public HudController hudController;
+
 
 
     void Awake()
@@ -31,6 +33,7 @@ public class FuseboxController : MonoBehaviour
         {
             isRepaired = true;
             Debug.Log("I was repaired! :) (I'm a fusebox.)");
+            hudController.removeFuseFromInventoryUI();
 
             dooropenerInteraction.TurnOn();
         }

@@ -158,5 +158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
+  hudController: {fileID: 0}
   isDoorOpen: 0
   hasEnergy: 0

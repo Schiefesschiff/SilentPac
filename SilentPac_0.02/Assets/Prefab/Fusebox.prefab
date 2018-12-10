@@ -159,3 +159,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRepaired: 0
   dooropener: {fileID: 0}
+  hudController: {fileID: 0}

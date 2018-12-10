@@ -10,7 +10,8 @@ public class DooropenerInteraction : MonoBehaviour
     private PlayerInventory playerInventory;
     public GameObject door;
     private DoorController doorController;
-    
+    public HudController hudController;
+
     private bool showTooltip;
     public bool isDoorOpen;
 
@@ -66,6 +67,7 @@ public class DooropenerInteraction : MonoBehaviour
                 if (playerInventory.hasKey && Input.GetButtonDown(StringCollection.INPUT_A) && !isDoorOpen)
                 {
                     playerInventory.hasKey = false;
+                    hudController.removeKeyFromInventoryUI();
                     showTooltip = false;
 
                     doorController.OpenDoor();

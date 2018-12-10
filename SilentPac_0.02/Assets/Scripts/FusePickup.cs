@@ -8,7 +8,8 @@ public class FusePickup : MonoBehaviour
 
     private GameObject player;
     private PlayerInventory playerInventory;
-
+    public HudController hudController;
+    
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -22,6 +23,7 @@ public class FusePickup : MonoBehaviour
         {
             //AudioSource.PlayClipAtPoint(keyGrab, transform.position);
             playerInventory.hasFuse = true;
+            hudController.addFuseToInventoryUI();
             Debug.Log("fuse says bye");
             Destroy(gameObject);
 
