@@ -99,9 +99,8 @@ public class CameraController : MonoBehaviour
             return false;
         }
 
-        if (input.y != 0 || input.y != 0)
+        if (input.y != 0 || input.x != 0)
         {
-            lastInput = true;
             return true;
         }
         return false;
@@ -129,25 +128,25 @@ public class CameraController : MonoBehaviour
 
     void RotateBehindPlayer()
     {
-        Vector3 direction = transform.position - target.position;
+        Vector3 direction = transform.position - new Vector3(target.position.x , transform.position.y, target.position.z);
 
         angle = Vector3.SignedAngle(direction, -target.forward, target.up);
 
         if (isInputRighJoy())
         {
-            if (angle <= -67 )
+            if (angle <= -5 )
             {
                 Vector3 targetOffsetPos = Quaternion.Euler(0, -1, 0) * offsetPos;
                 offsetPos = targetOffsetPos;
             }
-            else if (angle >= 67 )
+            else if (angle >= 5 )
             {
                 Vector3 targetOffsetPos = Quaternion.Euler(0, 1, 0) * offsetPos;
                 offsetPos = targetOffsetPos;
             }
         }
-        //print("angle " + angle);
-        print(input);
+        print("angle " + angle);
+        //print(input);
     }
 
 }

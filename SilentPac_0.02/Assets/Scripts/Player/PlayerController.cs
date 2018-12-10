@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private float angle;
     private Animator anim;
 
+    private Shooting shooting;
     private float ForwardSpeed;
     private Quaternion targetRotation;
     private Transform cam;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
     {
         cam = Camera.main.transform.transform;
         anim = GetComponent<Animator>();
+        shooting = GetComponent<Shooting>();
     }
        
     private void Update()
