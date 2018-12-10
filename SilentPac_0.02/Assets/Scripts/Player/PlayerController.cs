@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
         if (isRun)
         {
             anim.SetBool("Run", true);
+            //shooting.StartShootinh("ziel");
         }
         else
         {
