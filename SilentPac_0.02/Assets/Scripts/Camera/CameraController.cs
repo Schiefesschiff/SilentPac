@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     public GameObject SecondCameraPos;
 
     public bool Alarm = false;
+    public bool ArcadeSight = false;
     private bool lastInput = true;
     private Quaternion targetRotation;
     private Vector3 targetPos;
@@ -27,12 +28,13 @@ public class CameraController : MonoBehaviour
     {
         InputCameraControll();
 
-        if (!Alarm)
+        if (!Alarm && !ArcadeSight)
         {
-            RotateARoundTarget(rotationX);
+            RotateARoundTarget(rotationX, rotationY);
             MoveWithTarget();
             LookAtTarget();
             RotateBehindPlayer();
+            //RotateSlope(rotationY);
         }
         else
         {
@@ -45,8 +47,8 @@ public class CameraController : MonoBehaviour
     {
         if (transform.position != SecondCameraPos.transform.position)
         {
-           transform.position = Vector3.Lerp(transform.position, SecondCameraPos.transform.position, 1.5f * Time.deltaTime);
-           transform.rotation = Quaternion.Slerp(transform.rotation, SecondCameraPos.transform.rotation, 1 * Time.deltaTime);
+           transform.position = Vector3.Lerp(transform.position, SecondCameraPos.transform.position, 3f * Time.deltaTime);
+           transform.rotation = Quaternion.Slerp(transform.rotation, SecondCameraPos.transform.rotation, 3 * Time.deltaTime);
         }
     }
 
@@ -75,10 +77,10 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
     }
 
-    void RotateARoundTarget(float angle)
+    void RotateARoundTarget(float angle, float angleY)
     {
         Vector3 vel = Vector3.zero;
-        Vector3 targetOffsetPos = Quaternion.Euler(0, angle * rotationSpeed, 0) * offsetPos;
+        Vector3 targetOffsetPos = Quaternion.Euler(0, angle * rotationSpeed, angleY * rotationSpeed) * offsetPos;
         float dist = Vector3.Distance(offsetPos, targetOffsetPos);
 
         while (dist > 0.02f)
@@ -88,9 +90,7 @@ public class CameraController : MonoBehaviour
         }
 
         offsetPos = targetOffsetPos;
-
     }
-
 
     private bool isInputRighJoy()
     {
@@ -145,7 +145,7 @@ public class CameraController : MonoBehaviour
                 offsetPos = targetOffsetPos;
             }
         }
-        print("angle " + angle);
+        //print("angle " + angle);
         //print(input);
     }
 

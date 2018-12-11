@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    private PlayerEnergy playerEnergy;
     private LineRenderer lRend;
+
+    public int ConsumStanima = 1;
     public Transform transformPointA;
     public Transform transformPointB;
     public float length = 5f;
@@ -30,6 +33,7 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
+        playerEnergy = GetComponent<PlayerEnergy>();
         lRend = GetComponent<LineRenderer>();
         points = new Vector3[pointsCount];
         lRend.positionCount = pointsCount;
@@ -39,26 +43,37 @@ public class Shooting : MonoBehaviour
     {
         if (isShooting)
         {
-            StartShooting();
+            if (playerEnergy.currentStanima >= ConsumStanima)
+            {
+                StartLineRenderer();
+
+            }
+            else
+            {
+                StopShooting();
+            }
         }
 
     }
     
-    public void IsShooting()        // control for animation event
+    public void StartShooting()        // control for animation event
     {
-        isShooting = !isShooting;
-        if (isShooting)
+        isShooting = true;
+        if (playerEnergy.UseStanima(ConsumStanima))        // have energy?
         {
             lRend.enabled = true;
         }
-        else
-        {
-            lRend.enabled = false;
-        }
+    }
+
+    public void StopShooting()
+    {
+        playerEnergy.StopConsume(ConsumStanima);
+        isShooting = false;
+        lRend.enabled = false;
     }
 
 
-    public void StartShooting()
+    public void StartLineRenderer()
     {
         RaycastHit hit;
 

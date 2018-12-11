@@ -13,18 +13,18 @@ public class PlayerController : MonoBehaviour
     private Vector2 input;
     private float angle;
     private Animator anim;
-
-    private Shooting shooting;
+    
     private float ForwardSpeed;
     private Quaternion targetRotation;
     private Transform cam;
     private bool run;
     private bool shoot;
+    private bool ArcadeSight;
+
     private void Start()
     {
         cam = Camera.main.transform.transform;
         anim = GetComponent<Animator>();
-        shooting = GetComponent<Shooting>();
     }
        
     private void Update()
@@ -47,9 +47,9 @@ public class PlayerController : MonoBehaviour
         input.x = Input.GetAxisRaw(StringCollection.INPUT_HORIZONTAL);
         input.y = Input.GetAxisRaw(StringCollection.INPUT_VERTICAL);
         //print(input);
-        run = Input.GetButton(StringCollection.INPUT_RB);      
+        run = Input.GetButton(StringCollection.INPUT_LB);      
         shoot = Input.GetButton(StringCollection.INPUT_X);
-
+        cam.GetComponent<CameraController>().ArcadeSight = Input.GetButton(StringCollection.INPUT_RB);
     }
 
     void Run(bool isRun)
