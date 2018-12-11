@@ -31,6 +31,8 @@ public class EnemySight : MonoBehaviour
         previousSighting = lastPlayerSighting.resetPosition;
     }
 
+    public float testangle;
+
     private void Update()
     {
         if (lastPlayerSighting.position != previousSighting)
@@ -40,32 +42,47 @@ public class EnemySight : MonoBehaviour
 
         previousSighting = lastPlayerSighting.position;
 
+        ShowSearchRadius();
+
         //if (playerHealth.health > 0)                  // player is death?
         //{
         //    anim.SetBool(INsightBool, playerInSight);
         //}
         //else
         //{
-        //    anim.SetBool(INsightBool, false);    << dann lauf weiter lauf weiter
+        //    anim.SetBool(INsightBool, false);    << dann lauf weiter 
         //}
     }
 
+    public void ShowSearchRadius()
+    {
+
+        Vector3 direction = new Vector3 (transform.localPosition.x, transform.localPosition.y , transform.localPosition.z) - transform.localPosition;
+        float angle = Vector3.Angle(direction, transform.forward);
+        Debug.DrawLine(transform.position, new Vector3(transform.rotation.x, transform.position.y, transform.position.z ), Color.red);
+        
+    }
+
+
     void OnTriggerStay(Collider other)
         {
+
             if (other.gameObject == player)
             {
                 playerInSight = false;
                 Vector3 direction = other.transform.position - transform.position;
                 float angle = Vector3.Angle(direction, transform.forward);
 
-
-                if (angle < fieldOfViewAngle * 0.5f)
+            if (angle < fieldOfViewAngle * 0.5f)
                 {
                     print("test player in collider1111111111111111111111111111111111111");
 
                     RaycastHit hit;
 
+
                     Debug.DrawLine(transform.position, player.transform.position + transform.up, Color.red);
+
+
 
                     // raycast +1hight (transform.up) and collder radius
                     if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, col.radius))

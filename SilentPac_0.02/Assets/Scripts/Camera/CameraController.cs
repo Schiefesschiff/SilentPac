@@ -24,17 +24,22 @@ public class CameraController : MonoBehaviour
     private float rotationX;
     private float rotationY;
 
+
+    public float minimumY = -60F;
+    public float maximumY = 60F;
+
+
     private void FixedUpdate()
     {
         InputCameraControll();
 
-        if (!Alarm && !ArcadeSight)
+        if (!ArcadeSight)
         {
             RotateARoundTarget(rotationX, rotationY);
             MoveWithTarget();
             LookAtTarget();
             RotateBehindPlayer();
-            //RotateSlope(rotationY);
+            RotateSlope(rotationY);
         }
         else
         {
@@ -45,11 +50,13 @@ public class CameraController : MonoBehaviour
 
     void MoveToSecondPos()
     {
-        if (transform.position != SecondCameraPos.transform.position)
-        {
-           transform.position = Vector3.Lerp(transform.position, SecondCameraPos.transform.position, 3f * Time.deltaTime);
-           transform.rotation = Quaternion.Slerp(transform.rotation, SecondCameraPos.transform.rotation, 3 * Time.deltaTime);
-        }
+        float dist = Vector3.Distance(transform.position, SecondCameraPos.transform.position);
+
+        transform.position = Vector3.Lerp(transform.position, SecondCameraPos.transform.position, 3f * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, SecondCameraPos.transform.rotation, 3 * Time.deltaTime);
+        Vector3 targetPos = new Vector3(target.position.x, SecondCameraPos.transform.position.y, target.position.z);
+        SecondCameraPos.transform.position = Vector3.Lerp(SecondCameraPos.transform.position, targetPos , 1f);
+
     }
 
     void InputCameraControll()
@@ -80,7 +87,7 @@ public class CameraController : MonoBehaviour
     void RotateARoundTarget(float angle, float angleY)
     {
         Vector3 vel = Vector3.zero;
-        Vector3 targetOffsetPos = Quaternion.Euler(0, angle * rotationSpeed, angleY * rotationSpeed) * offsetPos;
+        Vector3 targetOffsetPos = Quaternion.Euler(0, angle * rotationSpeed,0) * offsetPos;
         float dist = Vector3.Distance(offsetPos, targetOffsetPos);
 
         while (dist > 0.02f)
@@ -90,6 +97,13 @@ public class CameraController : MonoBehaviour
         }
 
         offsetPos = targetOffsetPos;
+    }
+
+
+    void RotateSlope(float angle)
+    {
+        offsetPos = offsetPos + new Vector3(0, angle / 4 ,0);
+        offsetPos.y = Mathf.Clamp(offsetPos.y, minimumY, maximumY);
     }
 
     private bool isInputRighJoy()
@@ -104,26 +118,6 @@ public class CameraController : MonoBehaviour
             return true;
         }
         return false;
-
-        //if (rotationX != 0 || rotationY !=0)
-        //{
-        //    lastInput = false;
-        //    return false;
-        //}
-
-        //if (input.y != 0 || input.y != 0)
-        //{
-        //    lastInput = true;
-        //    return true;
-        //}
-
-        //if (lastInput == true)
-        //{
-        //    return true;
-        //}
-
-        //return false;
-
     }
 
     void RotateBehindPlayer()
@@ -148,5 +142,6 @@ public class CameraController : MonoBehaviour
         //print("angle " + angle);
         //print(input);
     }
+
 
 }
