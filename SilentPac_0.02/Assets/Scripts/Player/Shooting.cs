@@ -33,8 +33,8 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
+        lRend = GameObject.FindGameObjectWithTag("GameController").GetComponent<LineRenderer>();
         playerEnergy = GetComponent<PlayerEnergy>();
-        lRend = GetComponent<LineRenderer>();
         points = new Vector3[pointsCount];
         lRend.positionCount = pointsCount;
     }

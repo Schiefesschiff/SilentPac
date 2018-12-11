@@ -54,13 +54,16 @@ public class EnemySight : MonoBehaviour
         //}
     }
 
+
+    public Transform winkel1;
+    public Transform winkel2;
+
     public void ShowSearchRadius()
     {
 
-        Vector3 direction = new Vector3 (transform.localPosition.x, transform.localPosition.y , transform.localPosition.z) - transform.localPosition;
-        float angle = Vector3.Angle(direction, transform.forward);
-        Debug.DrawLine(transform.position, new Vector3(transform.rotation.x, transform.position.y, transform.position.z ), Color.red);
-        
+        Debug.DrawLine(transform.position, winkel1.position, Color.blue);
+
+        Debug.DrawLine(transform.position, winkel2.position, Color.blue);
     }
 
 

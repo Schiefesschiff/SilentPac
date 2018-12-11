@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -111,7 +111,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 8b0f3e98eb6cc7847baae54d47b246bf, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 4e37928b70951f74b8db9fb8e9dc35bf, type: 2}
 --- !u!1 &122391051
 GameObject:
   m_ObjectHideFlags: 0
@@ -14587,36 +14587,6 @@ PrefabInstance:
     - target: {fileID: 1019153902013247109, guid: 2bfc361be0d2ad342b52ca3ea1130b0f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 955372328745183673, guid: 2bfc361be0d2ad342b52ca3ea1130b0f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 955372328745183673, guid: 2bfc361be0d2ad342b52ca3ea1130b0f,
-        type: 3}
-      propertyPath: maximumX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 955372328745183673, guid: 2bfc361be0d2ad342b52ca3ea1130b0f,
-        type: 3}
-      propertyPath: minimumX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 955372328745183673, guid: 2bfc361be0d2ad342b52ca3ea1130b0f,
-        type: 3}
-      propertyPath: minimumY
-      value: -30
-      objectReference: {fileID: 0}
-    - target: {fileID: 955372328745183673, guid: 2bfc361be0d2ad342b52ca3ea1130b0f,
-        type: 3}
-      propertyPath: maximumY
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 955372328745183674, guid: 2bfc361be0d2ad342b52ca3ea1130b0f,
-        type: 3}
-      propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
