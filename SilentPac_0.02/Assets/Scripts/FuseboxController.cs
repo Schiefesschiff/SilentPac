@@ -36,14 +36,16 @@ public class FuseboxController : MonoBehaviour
             hudController.removeFuseFromInventoryUI();
 
             dooropenerInteraction.TurnOn();
+            showTooltip = false;
         }
     }
+    
 
-
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == player)
-        {            
+        {       
+            
                 if (showTooltip && !isRepaired)
                 {
                     if (playerInventory.hasFuse)

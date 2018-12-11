@@ -12,7 +12,7 @@ public class DooropenerInteraction : MonoBehaviour
     private DoorController doorController;
     public HudController hudController;
 
-    private bool showTooltip;
+    private bool showPopup;
     public bool isDoorOpen;
 
     public bool hasEnergy;
@@ -25,7 +25,7 @@ public class DooropenerInteraction : MonoBehaviour
         door = GameObject.FindGameObjectWithTag("Door");
         doorController = door.GetComponent<DoorController>();
 
-        showTooltip = true;
+        showPopup = false;
         isDoorOpen = false;
         
         hasEnergy = false;
@@ -40,7 +40,8 @@ public class DooropenerInteraction : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == player)
-        {            
+        {
+            showPopup = true;
             //AudioSource.PlayClipAtPoint(keyDrop, transform.position);         
         }
         
@@ -56,7 +57,7 @@ public class DooropenerInteraction : MonoBehaviour
             }
             else
             {
-                if (showTooltip && !isDoorOpen)
+                if (showPopup && !isDoorOpen)
                 {
                     if (playerInventory.hasKey)
                         Debug.Log("Press A to open door.");
@@ -68,7 +69,7 @@ public class DooropenerInteraction : MonoBehaviour
                 {
                     playerInventory.hasKey = false;
                     hudController.removeKeyFromInventoryUI();
-                    showTooltip = false;
+                    showPopup = false;
 
                     doorController.OpenDoor();
                     isDoorOpen = true;

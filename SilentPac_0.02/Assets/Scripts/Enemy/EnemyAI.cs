@@ -40,6 +40,9 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         lastPlayerSighting = GameObject.FindGameObjectWithTag("GameController").GetComponent<LastPlayerSighting>();
         anim = GetComponent<Animator>();
+
+        if (WorldEventController.EnemySpawned != null)
+            WorldEventController.EnemySpawned(this);
     }
 
     void Update()
@@ -181,5 +184,11 @@ public class EnemyAI : MonoBehaviour
             //patrolTimer = 0f;
         }
         nav.destination = patrolWayPoints[wayPointIndex].position;
+    }
+
+    void OnDestroy()
+    {
+        if (WorldEventController.EnemyRemoved != null)
+            WorldEventController.EnemyRemoved(this);// J-D HAUEN
     }
 }
