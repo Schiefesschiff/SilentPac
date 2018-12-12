@@ -3968,6 +3968,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fusebox
       objectReference: {fileID: 0}
+    - target: {fileID: 508861852, guid: 37a8b108e13ff4b418280f1f5cd57645, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 752075023}
     - target: {fileID: 4449385353386541161, guid: 37a8b108e13ff4b418280f1f5cd57645,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4033,10 +4037,6 @@ PrefabInstance:
       propertyPath: hudController
       value: 
       objectReference: {fileID: 1405571020}
-    - target: {fileID: 508861852, guid: 37a8b108e13ff4b418280f1f5cd57645, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 752075023}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37a8b108e13ff4b418280f1f5cd57645, type: 3}
 --- !u!4 &2126457430528495783 stripped

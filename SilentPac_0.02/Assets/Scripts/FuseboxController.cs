@@ -37,7 +37,18 @@ public class FuseboxController : MonoBehaviour
             showTooltip = false;
         }
     }
-    
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject == player && playerInventory.hasFuse)
+            hudController.MakeButtonBright(hudController.buttonImage_A);
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == player)
+            hudController.MakeButtonDark(hudController.buttonImage_A);
+    }
 
     void OnTriggerStay(Collider other)
     {

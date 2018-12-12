@@ -49,10 +49,19 @@ public class DooropenerInteraction : MonoBehaviour
         {
             showPopup = true;
             dooropenerPopupController.EnableCanvas();
-            //EnableCanvas
+
+            if (playerInventory.hasKey)
+                hudController.MakeButtonBright(hudController.buttonImage_A);
+            
             //AudioSource.PlayClipAtPoint(keyDrop, transform.position);         
         }
         
+    }
+    
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == player)
+            hudController.MakeButtonDark(hudController.buttonImage_A);
     }
 
     void OnTriggerStay (Collider other)

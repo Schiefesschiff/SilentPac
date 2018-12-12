@@ -32,6 +32,7 @@ public class HudController : MonoBehaviour
         keyImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);
         fuseImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);
         MakeButtonDark(buttonImage_Y);
+        MakeButtonDark(buttonImage_A);
     }
 
     void Update()
