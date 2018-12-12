@@ -147,7 +147,7 @@ public class CameraController : MonoBehaviour
             }
         }
         //print("angle " + angle);
-        print(input);
+        //print(input);
     }
 
 }

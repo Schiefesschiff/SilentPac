@@ -849,6 +849,7 @@ GameObject:
   - component: {fileID: 7419878721541002867}
   - component: {fileID: 4801194727470912590}
   - component: {fileID: 7194304863340800591}
+  - component: {fileID: 1624571734}
   m_Layer: 0
   m_Name: PlayerMain
   m_TagString: Player
@@ -937,6 +938,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnSpeed: 10
   speedDampTime: 0.1
+--- !u!114 &1624571734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036192536224563476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce23bd760e912be409f0e3e36b91c86a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  hasKey: 0
+  hasFuse: 0
 --- !u!1 &6036192536224563478
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,8 +13,6 @@ public class FuseboxController : MonoBehaviour
     private DooropenerInteraction dooropenerInteraction;
     public HudController hudController;
 
-
-
     void Awake()
     {
         isRepaired = false;
@@ -33,15 +31,15 @@ public class FuseboxController : MonoBehaviour
         {
             isRepaired = true;
             Debug.Log("I was repaired! :) (I'm a fusebox.)");
-            hudController.removeFuseFromInventoryUI();
-
+            hudController.RemoveFuseFromInventoryUI();
+            playerInventory.RemoveFuseFromInventory();
             dooropenerInteraction.TurnOn();
             showTooltip = false;
         }
     }
     
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject == player)
         {       
@@ -64,7 +62,7 @@ public class FuseboxController : MonoBehaviour
                     Debug.Log("Fusebox repaired.");
                 }
 
-                //AudioSource.PlayClipAtPoint(keyDrop, transform.position);            
+                //AudioSource.PlayClipAtPoint(keyDrop, transform.position);
         }
 
     }

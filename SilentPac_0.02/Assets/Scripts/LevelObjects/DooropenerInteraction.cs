@@ -11,6 +11,8 @@ public class DooropenerInteraction : MonoBehaviour
     public GameObject door;
     private DoorController doorController;
     public HudController hudController;
+    public Canvas canvas;
+    public DooropenerPopupController dooropenerPopupController;
 
     private bool showPopup;
     public bool isDoorOpen;
@@ -24,6 +26,10 @@ public class DooropenerInteraction : MonoBehaviour
 
         door = GameObject.FindGameObjectWithTag("Door");
         doorController = door.GetComponent<DoorController>();
+
+        dooropenerPopupController = canvas.GetComponent<DooropenerPopupController>();
+
+        //getComponent<SKRIPTNAME>().VARIABLE;
 
         showPopup = false;
         isDoorOpen = false;
@@ -42,6 +48,8 @@ public class DooropenerInteraction : MonoBehaviour
         if (other.gameObject == player)
         {
             showPopup = true;
+            dooropenerPopupController.EnableCanvas();
+            //EnableCanvas
             //AudioSource.PlayClipAtPoint(keyDrop, transform.position);         
         }
         
@@ -67,13 +75,12 @@ public class DooropenerInteraction : MonoBehaviour
 
                 if (playerInventory.hasKey && Input.GetButtonDown(StringCollection.INPUT_A) && !isDoorOpen)
                 {
-                    playerInventory.hasKey = false;
-                    hudController.removeKeyFromInventoryUI();
-                    showPopup = false;
-
+                    playerInventory.RemoveKeyFromInventory();
+                    hudController.RemoveKeyFromInventoryUI();
                     doorController.OpenDoor();
                     isDoorOpen = true;
                     Debug.Log("I opened the door (sneak, totally didn't)");
+                    dooropenerPopupController.ChangePopup(3);
                 }
 
                 //AudioSource.PlayClipAtPoint(keyDrop, transform.position);
@@ -85,13 +92,14 @@ public class DooropenerInteraction : MonoBehaviour
     public void TurnOn()
     {
         hasEnergy = true;
-        Debug.Log("Dooropener hasEnergy.");
+        Debug.Log("Dooropener hasEnergy. :)");
     }
 
     public void TurnOff()
     {
         hasEnergy = false;
-        Debug.Log("Dooropener hasn'tEnergy.");
+        dooropenerPopupController.ChangePopup(2);
+        Debug.Log("Dooropener hasn'tEnergy. :(");
     }
     
 }

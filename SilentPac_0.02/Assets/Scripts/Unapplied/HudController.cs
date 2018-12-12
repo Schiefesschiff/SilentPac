@@ -31,7 +31,7 @@ public class HudController : MonoBehaviour
     {
         keyImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);
         fuseImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);
-        makeButtonDark(buttonImage_Y);
+        MakeButtonDark(buttonImage_Y);
     }
 
     void Update()
@@ -53,45 +53,45 @@ public class HudController : MonoBehaviour
 
         if (energy >= 20f)
         {
-            makeButtonBright(buttonImage_B);
-            makeButtonBright(buttonImage_X);
+            MakeButtonBright(buttonImage_B);
+            MakeButtonBright(buttonImage_X);
         }
         else
         {
-            makeButtonDark(buttonImage_B);
-            makeButtonDark(buttonImage_X);
+            MakeButtonDark(buttonImage_B);
+            MakeButtonDark(buttonImage_X);
         }
         
         healthBar.fillAmount = health / maxHealth;
         energyBar.fillAmount = energy / maxEnergy;
     }
 
-    public void addKeyToInventoryUI()
+    public void AddKeyToInventoryUI()
     {
         keyImage.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
     }
     
-    public void removeKeyFromInventoryUI()
+    public void RemoveKeyFromInventoryUI()
     {
         keyImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);
     }
 
-    public void addFuseToInventoryUI()
+    public void AddFuseToInventoryUI()
     {
         fuseImage.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
     }
 
-    public void removeFuseFromInventoryUI()
+    public void RemoveFuseFromInventoryUI()
     {
         fuseImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);
     }
 
-    public void makeButtonDark(Image buttonImage)
+    public void MakeButtonDark(Image buttonImage)
     {
         buttonImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);
     }
 
-    public void makeButtonBright(Image buttonImage)
+    public void MakeButtonBright(Image buttonImage)
     {
         buttonImage.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
     }

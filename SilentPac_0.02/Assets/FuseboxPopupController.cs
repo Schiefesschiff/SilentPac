@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DooropenerPopupController : MonoBehaviour
+public class FuseboxPopupController : MonoBehaviour
 {
     private PlayerInventory playerInventory;
     private GameObject player;
-    private DooropenerInteraction dooropenerInteraction;
-    public GameObject dooropener;
+    private FuseboxController fuseboxController;
+    public GameObject fusebox;
 
     public bool isShown = true;
 
-    public GameObject Panel0_UseKey;
-    public GameObject Panel1_NeedKey;
-    public GameObject Panel2_NeedEnergy;
-    public GameObject Panel3_DoorOpened;
+    public GameObject Panel0_UseFuse;
+    public GameObject Panel1_NeedFuse;
+    public GameObject Panel2_FuseboxRepaired;
     
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerInventory = player.GetComponent<PlayerInventory>();
 
-        dooropenerInteraction = dooropener.GetComponent<DooropenerInteraction>();
+        fuseboxController = fusebox.GetComponent<FuseboxController>();
 
         //this.GetComponent<>();
 
@@ -44,12 +43,6 @@ public class DooropenerPopupController : MonoBehaviour
         {
             RotateToCamera();
         }
-        /*
-        if ()
-        {
-
-        }
-        */
     }
 
     void OnTriggerEnter(Collider other)
@@ -72,18 +65,16 @@ public class DooropenerPopupController : MonoBehaviour
         transform.rotation = Camera.main.transform.rotation;
         //Transform.EulerAngles
     }
-    
+
     public int WhichPopup()
     {
-        if (dooropenerInteraction.isDoorOpen)
-            return 3;
-        else if (!dooropenerInteraction.hasEnergy)
+        if (fuseboxController.isRepaired)
             return 2;
-        else if (!playerInventory.hasKey)
+        else if (!playerInventory.hasFuse)
             return 1;
-        else if (playerInventory.hasKey)
+        else if (playerInventory.hasFuse)
             return 0;
-        
+
         return 0;
     }
 
@@ -92,34 +83,24 @@ public class DooropenerPopupController : MonoBehaviour
         switch (index)
         {
             case 0:
-                Panel0_UseKey.gameObject.SetActive(true);
-                Panel1_NeedKey.gameObject.SetActive(false);
-                Panel2_NeedEnergy.gameObject.SetActive(false);
-                Panel3_DoorOpened.gameObject.SetActive(false);
+                Panel0_UseFuse.gameObject.SetActive(true);
+                Panel1_NeedFuse.gameObject.SetActive(false);
+                Panel2_FuseboxRepaired.gameObject.SetActive(false);
                 break;
             case 1:
-                Panel0_UseKey.gameObject.SetActive(false);
-                Panel1_NeedKey.gameObject.SetActive(true);
-                Panel2_NeedEnergy.gameObject.SetActive(false);
-                Panel3_DoorOpened.gameObject.SetActive(false);
+                Panel0_UseFuse.gameObject.SetActive(false);
+                Panel1_NeedFuse.gameObject.SetActive(true);
+                Panel2_FuseboxRepaired.gameObject.SetActive(false);
                 break;
             case 2:
-                Panel0_UseKey.gameObject.SetActive(false);
-                Panel1_NeedKey.gameObject.SetActive(false);
-                Panel2_NeedEnergy.gameObject.SetActive(true);
-                Panel3_DoorOpened.gameObject.SetActive(false);
-                break;
-            case 3:
-                Panel0_UseKey.gameObject.SetActive(false);
-                Panel1_NeedKey.gameObject.SetActive(false);
-                Panel2_NeedEnergy.gameObject.SetActive(false);
-                Panel3_DoorOpened.gameObject.SetActive(true);
+                Panel0_UseFuse.gameObject.SetActive(false);
+                Panel1_NeedFuse.gameObject.SetActive(false);
+                Panel2_FuseboxRepaired.gameObject.SetActive(true);
                 break;
             default:
-                Panel0_UseKey.gameObject.SetActive(false);
-                Panel1_NeedKey.gameObject.SetActive(false);
-                Panel2_NeedEnergy.gameObject.SetActive(false);
-                Panel3_DoorOpened.gameObject.SetActive(false);
+                Panel0_UseFuse.gameObject.SetActive(false);
+                Panel1_NeedFuse.gameObject.SetActive(false);
+                Panel2_FuseboxRepaired.gameObject.SetActive(false);
                 Debug.Log("ChangePopup with index " + index + " defaulted.");
                 break;
         }

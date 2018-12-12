@@ -14,7 +14,6 @@ public class FusePickup : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerInventory = player.GetComponent<PlayerInventory>();
-
     }
 
     void OnTriggerEnter(Collider other)
@@ -22,13 +21,11 @@ public class FusePickup : MonoBehaviour
         if (other.gameObject == player)
         {
             //AudioSource.PlayClipAtPoint(keyGrab, transform.position);
-            playerInventory.hasFuse = true;
-            hudController.addFuseToInventoryUI();
+            playerInventory.AddFuseToInventory();
+            hudController.AddFuseToInventoryUI();
             Debug.Log("fuse says bye");
             Destroy(gameObject);
-
-        }
-        
+        }        
     }
 
 }
