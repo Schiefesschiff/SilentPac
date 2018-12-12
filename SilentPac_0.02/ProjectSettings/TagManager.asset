@@ -12,6 +12,7 @@ TagManager:
   - Door
   - Dooropener
   - ElectricRiotStick
+  - HUD
   layers:
   - Default
   - TransparentFX

@@ -10,10 +10,12 @@ public class PlayerEnergy : MonoBehaviour
     public int maxStanima = 100;
     public int currentStanima { get; private set; }
 
+    private HudController hud;
     private int reduceValueStamina;
     private Animator ani;
     private void Awake()
     {
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HudController>();
         ani = GetComponent<Animator>();
         currentHealth = maxHealth;
         currentStanima = maxStanima;
@@ -23,6 +25,12 @@ public class PlayerEnergy : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown("q"))
+        {
+            TakeDamage(30);
+        }
+
+
         if (reduceValueStamina > 0)
         {
             reduceTimer += Time.deltaTime;
@@ -35,9 +43,13 @@ public class PlayerEnergy : MonoBehaviour
     }
 
 
-    public void TakeDamage( int damage)
+
+
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        hud.ReduceHealth(currentHealth, currentStanima);
+
         Debug.Log(transform.name + " take " + damage + " damage ");
 
         if (currentHealth <= 0)

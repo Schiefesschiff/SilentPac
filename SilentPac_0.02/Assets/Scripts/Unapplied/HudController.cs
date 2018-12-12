@@ -5,13 +5,13 @@ using TMPro;
 public class HudController : MonoBehaviour
 {
     [Header("Health")]
-    public float maxHealth = 100;
-    public float health = 100;
+    private float maxHealth = 100;
+    private float health;
     public Image healthBar;
 
     [Header("Energy")]
-    public float maxEnergy = 100;
-    public float energy = 100;
+    private float maxEnergy = 100;
+    private float energy;
     public Image energyBar;
     //public TextMeshProUGUI myTextMeshProGui;
 
@@ -33,6 +33,9 @@ public class HudController : MonoBehaviour
         fuseImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);
         MakeButtonDark(buttonImage_Y);
         MakeButtonDark(buttonImage_A);
+
+        health = maxHealth;
+        energy = maxEnergy;
     }
 
     void Update()
@@ -40,32 +43,39 @@ public class HudController : MonoBehaviour
         //need to get health and energy from the playerController here
 
         //Testfunktion, lässt Health hoch und runter gehen
-        if (health <= 0f)
-            healthWippeDown = false;
-        if (health >= 100f)
-            healthWippeDown = true;
+        //if (health <= 0f)
+        //    healthWippeDown = false;
+        //if (health >= 100f)
+        //    healthWippeDown = true;
 
-        if (healthWippeDown)
-            health --;
-        else
-            health ++;
-        
-        energy = health; //Testfunktion Ende
+        //if (healthWippeDown)
+        //    health --;
+        //else
+        //    health ++;
 
-        if (energy >= 20f)
-        {
-            MakeButtonBright(buttonImage_B);
-            MakeButtonBright(buttonImage_X);
-        }
-        else
-        {
-            MakeButtonDark(buttonImage_B);
-            MakeButtonDark(buttonImage_X);
-        }
-        
-        healthBar.fillAmount = health / maxHealth;
-        energyBar.fillAmount = energy / maxEnergy;
+        //energy = health; //Testfunktion Ende
+
+        //if (energy >= 20f)
+        //{
+        //    MakeButtonBright(buttonImage_B);
+        //    MakeButtonBright(buttonImage_X);
+        //}
+        //else
+        //{
+        //    MakeButtonDark(buttonImage_B);
+        //    MakeButtonDark(buttonImage_X);
+        //}
+        healthBar.fillAmount = Mathf.Lerp(1, health, 0.5f);
+        energyBar.fillAmount = Mathf.Lerp(1, energy, 0.5f);
     }
+
+    public void ReduceHealth(int _health , int _energy)
+    {
+        health = _health / maxHealth;
+        energy = _energy / maxEnergy;
+    }
+
+
 
     public void AddKeyToInventoryUI()
     {
