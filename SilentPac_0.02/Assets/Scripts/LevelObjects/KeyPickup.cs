@@ -8,12 +8,12 @@ public class KeyPickup : MonoBehaviour
 
     private GameObject player;
     private PlayerInventory playerInventory;
+    public HudController hudController;
 
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        playerInventory = player.GetComponent<PlayerInventory>();
-
+        playerInventory = player.GetComponent<PlayerInventory>();        
     }
 
     void OnTriggerEnter(Collider other)
@@ -21,14 +21,11 @@ public class KeyPickup : MonoBehaviour
         if (other.gameObject == player)
         {
             //AudioSource.PlayClipAtPoint(keyGrab, transform.position);
-            playerInventory.hasKey = true;
+            playerInventory.AddKeyToInventory();
+            hudController.AddKeyToInventoryUI();
             Debug.Log("key says bye");
-            Destroy(gameObject);
-                
+            Destroy(gameObject);                
         }
-
-
     }
-
-
+    
 }

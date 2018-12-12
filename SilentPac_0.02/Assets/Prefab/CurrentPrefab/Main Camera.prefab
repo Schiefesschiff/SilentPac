@@ -24,9 +24,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:SilentPac_0.02/Assets/Prefab/CurrentPrefab/Main Camera.prefab
   m_GameObject: {fileID: 7121144571166985418}
   m_LocalRotation: {x: 0.47371164, y: 0.00038432976, z: -0.00013570688, w: 0.88067997}
   m_LocalPosition: {x: 348, y: 11.507339, z: 122}
+=======
+  m_GameObject: {fileID: 2882698226960293222}
+  m_LocalRotation: {x: 0.47371164, y: 0.00038432976, z: -0.00013570688, w: 0.88067997}
+  m_LocalPosition: {x: 8.58, y: 8.88, z: -8.39}
+>>>>>>> jo-hud:SilentPac_0.02/Assets/Prefab/Main Camera.prefab
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

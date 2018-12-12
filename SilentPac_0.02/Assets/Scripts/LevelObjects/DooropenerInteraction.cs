@@ -10,8 +10,11 @@ public class DooropenerInteraction : MonoBehaviour
     private PlayerInventory playerInventory;
     public GameObject door;
     private DoorController doorController;
-    
-    private bool showTooltip;
+    public HudController hudController;
+    public Canvas canvas;
+    public DooropenerPopupController dooropenerPopupController;
+
+    private bool showPopup;
     public bool isDoorOpen;
 
     public bool hasEnergy;
@@ -24,7 +27,11 @@ public class DooropenerInteraction : MonoBehaviour
         door = GameObject.FindGameObjectWithTag("Door");
         doorController = door.GetComponent<DoorController>();
 
-        showTooltip = true;
+        dooropenerPopupController = canvas.GetComponent<DooropenerPopupController>();
+
+        //getComponent<SKRIPTNAME>().VARIABLE;
+
+        showPopup = false;
         isDoorOpen = false;
         
         hasEnergy = false;
@@ -39,10 +46,22 @@ public class DooropenerInteraction : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == player)
-        {            
+        {
+            showPopup = true;
+            dooropenerPopupController.EnableCanvas();
+
+            if (playerInventory.hasKey)
+                hudController.MakeButtonBright(hudController.buttonImage_A);
+            
             //AudioSource.PlayClipAtPoint(keyDrop, transform.position);         
         }
         
+    }
+    
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == player)
+            hudController.MakeButtonDark(hudController.buttonImage_A);
     }
 
     void OnTriggerStay (Collider other)
@@ -55,7 +74,7 @@ public class DooropenerInteraction : MonoBehaviour
             }
             else
             {
-                if (showTooltip && !isDoorOpen)
+                if (showPopup && !isDoorOpen)
                 {
                     if (playerInventory.hasKey)
                         Debug.Log("Press A to open door.");
@@ -65,12 +84,12 @@ public class DooropenerInteraction : MonoBehaviour
 
                 if (playerInventory.hasKey && Input.GetButtonDown(StringCollection.INPUT_A) && !isDoorOpen)
                 {
-                    playerInventory.hasKey = false;
-                    showTooltip = false;
-
+                    playerInventory.RemoveKeyFromInventory();
+                    hudController.RemoveKeyFromInventoryUI();
                     doorController.OpenDoor();
                     isDoorOpen = true;
                     Debug.Log("I opened the door (sneak, totally didn't)");
+                    dooropenerPopupController.ChangePopup(3);
                 }
 
                 //AudioSource.PlayClipAtPoint(keyDrop, transform.position);
@@ -82,13 +101,14 @@ public class DooropenerInteraction : MonoBehaviour
     public void TurnOn()
     {
         hasEnergy = true;
-        Debug.Log("Dooropener hasEnergy.");
+        Debug.Log("Dooropener hasEnergy. :)");
     }
 
     public void TurnOff()
     {
         hasEnergy = false;
-        Debug.Log("Dooropener hasn'tEnergy.");
+        dooropenerPopupController.ChangePopup(2);
+        Debug.Log("Dooropener hasn'tEnergy. :(");
     }
     
 }
