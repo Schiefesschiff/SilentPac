@@ -9,6 +9,7 @@ public class EnemySight : MonoBehaviour
     public bool playerInSight;
     public Vector3 personalLastSighting;        // position from hearing
 
+    private PlayerEnergy playerEnergy;
     private NavMeshAgent nav;
     private SphereCollider col;
     private Animator anim;
@@ -25,6 +26,7 @@ public class EnemySight : MonoBehaviour
         anim = GetComponent<Animator>();
         lastPlayerSighting = GameObject.FindGameObjectWithTag("GameController").GetComponent<LastPlayerSighting>();
         player = GameObject.FindGameObjectWithTag("Player");
+        playerEnergy = player.GetComponent<PlayerEnergy>();
         playerAnim = player.GetComponent<Animator>();
 
         personalLastSighting = lastPlayerSighting.resetPosition;
@@ -44,14 +46,10 @@ public class EnemySight : MonoBehaviour
 
         ShowSearchRadius();
 
-        //if (playerHealth.health > 0)                  // player is death?
-        //{
-        //    anim.SetBool(INsightBool, playerInSight);
-        //}
-        //else
-        //{
-        //    anim.SetBool(INsightBool, false);    << dann lauf weiter 
-        //}
+        if (playerEnergy.currentHealth <= 0)                  // player is death?
+        {
+            personalLastSighting = lastPlayerSighting.resetPosition;
+        }
     }
 
 
@@ -78,7 +76,7 @@ public class EnemySight : MonoBehaviour
 
             if (angle < fieldOfViewAngle * 0.5f)
                 {
-                    print("test player in collider1111111111111111111111111111111111111");
+                    //print("test player in collider1111111111111111111111111111111111111");
 
                     RaycastHit hit;
 
@@ -92,7 +90,7 @@ public class EnemySight : MonoBehaviour
                     {
                         if (hit.collider.gameObject == player)
                         {
-                            print("test Raycast hit Player");
+                            //print("test Raycast hit Player");
                             playerInSight = true;
                             lastPlayerSighting.position = player.transform.position; // alarm 
                         }

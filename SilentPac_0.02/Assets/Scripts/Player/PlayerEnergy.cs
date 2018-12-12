@@ -11,9 +11,10 @@ public class PlayerEnergy : MonoBehaviour
     public int currentStanima { get; private set; }
 
     private int reduceValueStamina;
-
+    private Animator ani;
     private void Awake()
     {
+        ani = GetComponent<Animator>();
         currentHealth = maxHealth;
         currentStanima = maxStanima;
     }
@@ -95,7 +96,16 @@ public class PlayerEnergy : MonoBehaviour
         // die in same way
         // this mothod is meant to be overwritteb
         Debug.Log(transform.name + " died");
+        ani.SetBool("isDying", true);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "ElectricRiotStick")
+        {
+            Debug.Log("entered");
+            TakeDamage(30);
+        }
+    }
 
 }

@@ -10,7 +10,7 @@ public class Shooting : MonoBehaviour
     public int ConsumStanima = 1;
     public Transform transformPointA;
     public Transform transformPointB;
-    public float length = 5f;
+    public float shootRange = 5f;
     private readonly int pointsCount = 5;
     private readonly int half = 2;
     private float randomness;
@@ -77,10 +77,22 @@ public class Shooting : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transformPointA.position, transformPointA.TransformDirection(Vector3.forward), out hit, length))
+        if (Physics.Raycast(transformPointA.position, transformPointA.TransformDirection(Vector3.forward), out hit, shootRange))
         {
             transformPointB.position = hit.point;
             Debug.DrawRay(transformPointA.position, hit.point, Color.yellow);
+
+            print(hit.transform.name);
+            if (hit.transform.tag == "Enemy") 
+            {
+                print("treffer auf enemy");
+                hit.transform.GetComponent<EnemyAI>().GotDamage(1);
+            }
+            else
+            {
+
+            }
+
         }
         else
         {

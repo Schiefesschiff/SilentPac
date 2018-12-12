@@ -11,6 +11,7 @@ TagManager:
   - Ground
   - Door
   - Dooropener
+  - ElectricRiotStick
   layers:
   - Default
   - TransparentFX

@@ -14,6 +14,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float patrolWaitTime = 1f;
     [SerializeField] private int SearchingPoints = 3;
 
+    public int health;
+    public int maxHeatl = 100;
+
     public float SearchingRadius = 3;
 
     public Transform[] patrolWayPoints;
@@ -28,7 +31,7 @@ public class EnemyAI : MonoBehaviour
     private float patrolTimer;
     private int wayPointIndex;
     private int SearchingPointIndex = 0;
-
+    private bool isDeath = false;
 
     private ThirdPersonCharacter character;
 
@@ -40,34 +43,53 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         lastPlayerSighting = GameObject.FindGameObjectWithTag("GameController").GetComponent<LastPlayerSighting>();
         anim = GetComponent<Animator>();
+        health = maxHeatl;
     }
 
     void Update()
     {
-        if (enemySight.playerInSight)
+        if (!isDeath)
         {
-            Attacking();
-        }
-        else if (enemySight.personalLastSighting != lastPlayerSighting.resetPosition)      
-        {
-            Chasing();
+            if (enemySight.playerInSight)
+            {
+                Attacking();
+            }
+            else if (enemySight.personalLastSighting != lastPlayerSighting.resetPosition)      
+            {
+                Chasing();
+            }
+            else
+            {
+                Patrolling();
+            }
+
+
+            if (nav.remainingDistance > nav.stoppingDistance)       // distance between enemy / player
+            {
+                character.Move(nav.desiredVelocity, false, false, currentSpeed);      // for third person controller(animation)
+            }
+            else
+            {
+                character.Move(Vector3.zero, false, false, currentSpeed);
+            }
         }
         else
         {
-            Patrolling();
-        }
-
-
-        if (nav.remainingDistance > nav.stoppingDistance)       // distance between enemy / player
-        {
-            character.Move(nav.desiredVelocity, false, false, currentSpeed);      // for third person controller(animation)
-        }
-        else
-        {
+            anim.SetBool("DeathTrigger", true);
             character.Move(Vector3.zero, false, false, currentSpeed);
         }
+
     }
 
+
+   public void GotDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            isDeath = true;
+        }
+    }
 
     void Attacking()
     {
@@ -76,7 +98,7 @@ public class EnemyAI : MonoBehaviour
 
         if (nav.remainingDistance < nav.stoppingDistance)
         {
-            print("an dieser stelle attack!!!!!!!!!!!");
+            //print("an dieser stelle attack!!!!!!!!!!!");
             //nav.isStopped = true;
             anim.SetBool("Attack",true);
         }
@@ -128,7 +150,7 @@ public class EnemyAI : MonoBehaviour
 
     void SearchingPlayer()      // random points on NavMeshPlane for navAgent
     {
-            print("´SearchingPlayer Rando Function");
+            //print("´SearchingPlayer Rando Function");
             Vector3 randomPoint = transform.position + Random.insideUnitSphere * SearchingRadius;
 
             // is random distanz to next radom point

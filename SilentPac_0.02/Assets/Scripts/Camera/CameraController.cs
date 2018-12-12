@@ -139,7 +139,7 @@ public class CameraController : MonoBehaviour
                 offsetPos = targetOffsetPos;
             }
         }
-        print("angle " + angle);
+        //print("angle " + angle);
         //print(input);
     }
 
