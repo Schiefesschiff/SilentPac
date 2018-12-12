@@ -27,6 +27,8 @@ public class EnemyAI : MonoBehaviour
     private Transform player;
     private Animator anim;
     private LastPlayerSighting lastPlayerSighting;
+    private GameObject playér;
+    private PlayerEnergy playerEnergy;
     private float chaseTimer;
     private float patrolTimer;
     private int wayPointIndex;
@@ -44,6 +46,8 @@ public class EnemyAI : MonoBehaviour
         lastPlayerSighting = GameObject.FindGameObjectWithTag("GameController").GetComponent<LastPlayerSighting>();
         anim = GetComponent<Animator>();
         health = maxHeatl;
+        playerEnergy = player.GetComponent<PlayerEnergy>();
+
     }
 
     void Update()
@@ -77,6 +81,7 @@ public class EnemyAI : MonoBehaviour
         {
             anim.SetBool("DeathTrigger", true);
             character.Move(Vector3.zero, false, false, currentSpeed);
+            nav.enabled = false;
         }
 
     }
@@ -96,7 +101,7 @@ public class EnemyAI : MonoBehaviour
         nav.speed = chaseSpeed;
         currentSpeed = chaseSpeed;
 
-        if (nav.remainingDistance < nav.stoppingDistance)
+        if (nav.remainingDistance < nav.stoppingDistance && playerEnergy.currentHealth >= 0)
         {
             //print("an dieser stelle attack!!!!!!!!!!!");
             //nav.isStopped = true;

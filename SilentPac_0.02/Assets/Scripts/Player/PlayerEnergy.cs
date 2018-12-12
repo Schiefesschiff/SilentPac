@@ -77,7 +77,7 @@ public class PlayerEnergy : MonoBehaviour
         if (reduceValueStamina <= currentStanima)
         {
 
-            print("genug energy " + currentStanima);
+            //print("genug energy " + currentStanima);
             return true;
         }
         reduceValueStamina -= use;

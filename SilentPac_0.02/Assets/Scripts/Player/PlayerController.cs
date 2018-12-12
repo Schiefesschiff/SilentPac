@@ -28,12 +28,11 @@ public class PlayerController : MonoBehaviour
         playerEnergy = GetComponent<PlayerEnergy>();
         cam = Camera.main.transform.transform;
         anim = GetComponent<Animator>();
+
     }
        
     private void Update()
     {
-        if (anim.GetBool("isDying") == false)
-        {
             GetInput();
             Run(run);
             Shoot(shoot);
@@ -45,8 +44,6 @@ public class PlayerController : MonoBehaviour
                 Rotation();
             }
             Move();
-        }
-
     }
 
     // input base on horizontal (a,b,<,>) and vertical(w,s,^,v) keys
@@ -94,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
     void Shoot(bool shoot)
     {
-        if (shoot)
+        if (shoot && playerEnergy.currentHealth >= 0)
         {
             anim.SetBool("Shoot", true);
             anim.SetBool("PullEnergy", false);

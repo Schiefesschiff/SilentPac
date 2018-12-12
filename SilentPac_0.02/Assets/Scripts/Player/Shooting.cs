@@ -10,6 +10,8 @@ public class Shooting : MonoBehaviour
     public int ConsumStanima = 1;
     public Transform transformPointA;
     public Transform transformPointB;
+    public Transform transformPointC;
+
     public float shootRange = 5f;
     private readonly int pointsCount = 5;
     private readonly int half = 2;
@@ -80,7 +82,6 @@ public class Shooting : MonoBehaviour
         if (Physics.Raycast(transformPointA.position, transformPointA.TransformDirection(Vector3.forward), out hit, shootRange))
         {
             transformPointB.position = hit.point;
-            Debug.DrawRay(transformPointA.position, hit.point, Color.yellow);
 
             print(hit.transform.name);
             if (hit.transform.tag == "Enemy") 
@@ -88,17 +89,11 @@ public class Shooting : MonoBehaviour
                 print("treffer auf enemy");
                 hit.transform.GetComponent<EnemyAI>().GotDamage(1);
             }
-            else
-            {
-
-            }
-
         }
         else
         {
-            Debug.DrawRay(transformPointA.position, hit.point, Color.yellow);
-            print("There is something in front of the object!");
-            //transformPointB.position = new Vector3 (transformPointA.localPosition.x , transformPointA.localPosition.y, transformPointA.localPosition.z + length);
+            transformPointB = transformPointC;
+            Debug.Log("Did not Hit");
         }
 
         CalculatePoints();
