@@ -300,6 +300,36 @@ Transform:
   m_Father: {fileID: 1843072647}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &738679581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 738679582}
+  m_Layer: 0
+  m_Name: OrginalHitShoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &738679582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738679581}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3400002, z: 6.4400005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1573420450}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &819135700
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +576,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 992644552, guid: 09f105ed664bbff42be8f7885a623c36, type: 3}
+      propertyPath: transformPointC
+      value: 
+      objectReference: {fileID: 738679582}
     - target: {fileID: 8736411762214065910, guid: 09f105ed664bbff42be8f7885a623c36,
         type: 3}
       propertyPath: m_IsActive
@@ -721,6 +755,16 @@ PrefabInstance:
       propertyPath: patrolWayPoints.Array.data[3]
       value: 
       objectReference: {fileID: 819135701}
+    - target: {fileID: 6226143257077756407, guid: 6ac8420ae6c617e4e83d04174fc7842d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1256083263530491198, guid: 6ac8420ae6c617e4e83d04174fc7842d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 804383887, guid: 6ac8420ae6c617e4e83d04174fc7842d, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -791,6 +835,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1573420450 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1928682387342190996, guid: 09f105ed664bbff42be8f7885a623c36,
+    type: 3}
+  m_PrefabInstance: {fileID: 996553428}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1611023478
 PrefabInstance:
   m_ObjectHideFlags: 0
