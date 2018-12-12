@@ -950,7 +950,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce23bd760e912be409f0e3e36b91c86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  keyCanvas: {fileID: 0}
+  fuseCanvas: {fileID: 0}
   hasKey: 0
   hasFuse: 0
 --- !u!1 &6036192536224563478
