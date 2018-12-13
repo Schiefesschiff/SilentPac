@@ -100,7 +100,7 @@ public class EnemySight : MonoBehaviour
 
                 // todo player animator in bewegung?
                 // tdo player is shoot?
-                if (playerAnim.GetBool("Run"))       //ToDO  jump , Walkking
+                if (playerAnim.GetBool("PullEnergy") || playerAnim.GetBool("Run"))       //ToDO  jump , Walkking
                 {
                     if (CalculatePathLength(player.transform.position) <= col.radius)       // 
                     {

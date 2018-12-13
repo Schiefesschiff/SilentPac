@@ -1,0 +1,387 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &221238089960938748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 221238089960938627}
+  - component: {fileID: 221238089960938625}
+  m_Layer: 0
+  m_Name: CameraObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &221238089960938627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221238089960938748}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.49, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3675621020388760883}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &221238089960938625
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221238089960938748}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 32
+  m_CollisionDetection: 0
+--- !u!1 &3010203015138848698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3010203015138848697}
+  m_Layer: 0
+  m_Name: OrginalHitShoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3010203015138848697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010203015138848698}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3400002, z: 6.4400005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3675621020388760883}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3010203015530147576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3010203015530147527}
+  m_Layer: 0
+  m_Name: StartShoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3010203015530147527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010203015530147576}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0621, y: 1.4673, z: 0.674}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3675621020388760883}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3010203016475390860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3010203016475390859}
+  m_Layer: 0
+  m_Name: HitShoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3010203016475390859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010203016475390860}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 1.34, z: 6.44}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3675621020388760883}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3675621020388851987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3675621020388760883}
+  - component: {fileID: 3675621020396286679}
+  - component: {fileID: 449802080800298612}
+  - component: {fileID: 2479220410115871817}
+  - component: {fileID: 221238088669604424}
+  - component: {fileID: 3010203015421688160}
+  - component: {fileID: 3010203015421688175}
+  - component: {fileID: 3010203016457701881}
+  m_Layer: 0
+  m_Name: PlayerMain
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3675621020388760883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675621020388851987}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.91, y: 2.051, z: -25.91}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 221238089960938627}
+  - {fileID: 3010203015530147527}
+  - {fileID: 3010203016475390859}
+  - {fileID: 3010203015138848697}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &3675621020396286679
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675621020388851987}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: be3d0075f9041ce4e984886d4a2d133a, type: 3}
+  m_Controller: {fileID: 9100000, guid: 5f5c4533c3da1d54884f04e597921953, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: '
+
+    Transform ''mixamorig:LeftToeBase'' has been deleted
+
+    Transform ''mixamorig:LeftFoot'' has been deleted
+
+    Transform ''mixamorig:LeftLeg'' has been deleted
+
+    Transform ''mixamorig:LeftUpLeg'' has been deleted
+
+    Transform ''mixamorig:RightToeBase'' has been deleted
+
+    Transform ''mixamorig:RightFoot'' has been deleted
+
+    Transform ''mixamorig:RightLeg'' has been deleted
+
+    Transform ''mixamorig:RightUpLeg'' has been deleted
+
+    Transform ''mixamorig:LeftHandIndex3'' has been deleted
+
+    Transform ''mixamorig:LeftHandIndex2'' has been deleted
+
+    Transform ''mixamorig:LeftHandIndex1'' has been deleted
+
+    Transform ''mixamorig:LeftHandMiddle3'' has been deleted
+
+    Transform ''mixamorig:LeftHandMiddle2'' has been deleted
+
+    Transform ''mixamorig:LeftHandMiddle1'' has been deleted
+
+    Transform ''mixamorig:LeftHandRing3'' has been deleted
+
+    Transform ''mixamorig:LeftHandRing2'' has been deleted
+
+    Transform ''mixamorig:LeftHandRing1'' has been deleted
+
+    Transform ''mixamorig:LeftHandThumb3'' has been deleted
+
+    Transform ''mixamorig:LeftHandThumb2'' has been deleted
+
+    Transform ''mixamorig:LeftHandThumb1'' has been deleted
+
+    Transform ''mixamorig:LeftHand'' has been deleted
+
+    Transform ''mixamorig:LeftForeArm'' has been deleted
+
+    Transform ''mixamorig:LeftArm'' has been deleted
+
+    Transform ''mixamorig:LeftShoulder'' has been deleted
+
+    Transform ''mixamorig:Head'' has been deleted
+
+    Transform ''mixamorig:Neck'' has been deleted
+
+    Transform ''mixamorig:RightHandIndex3'' has been deleted
+
+    Transform ''mixamorig:RightHandIndex2'' has been deleted
+
+    Transform ''mixamorig:RightHandIndex1'' has been deleted
+
+    Transform ''mixamorig:RightHandMiddle3'' has been deleted
+
+    Transform ''mixamorig:RightHandMiddle2'' has been deleted
+
+    Transform ''mixamorig:RightHandMiddle1'' has been deleted
+
+    Transform ''mixamorig:RightHandRing3'' has been deleted
+
+    Transform ''mixamorig:RightHandRing2'' has been deleted
+
+    Transform ''mixamorig:RightHandRing1'' has been deleted
+
+    Transform ''mixamorig:RightHandThumb3'' has been deleted
+
+    Transform ''mixamorig:RightHandThumb2'' has been deleted
+
+    Transform ''mixamorig:RightHandThumb1'' has been deleted
+
+    Transform ''mixamorig:RightHand'' has been deleted
+
+    Transform ''mixamorig:RightForeArm'' has been deleted
+
+    Transform ''mixamorig:RightArm'' has been deleted
+
+    Transform ''mixamorig:RightShoulder'' has been deleted
+
+    Transform ''mixamorig:Spine2'' has been deleted
+
+    Transform ''mixamorig:Spine1'' has been deleted
+
+    Transform ''mixamorig:Spine'' has been deleted
+
+    Transform ''mixamorig:Hips'' has been deleted'
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &449802080800298612
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675621020388851987}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &2479220410115871817
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675621020388851987}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.24
+  m_Height: 1.75
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.91, z: 0}
+--- !u!114 &221238088669604424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675621020388851987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28e5c98772888546ace94548f2f94b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParticelPullEnergy: {fileID: 0}
+  turnSpeed: 2
+  speedDampTime: 0.1
+  RecoverEnergySpeed: 0.5
+  ParticelPos: {fileID: 8736411761563083626, guid: f3869f973b23cc34abb3bf11eb31631e,
+    type: 3}
+--- !u!114 &3010203015421688160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675621020388851987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52376898dc27b0543b12615c941794dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  maxStanima: 100
+--- !u!114 &3010203015421688175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675621020388851987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9550d9fa1b2863f4783015a13bcb333a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConsumStanima: 10
+  transformPointA: {fileID: 3010203015530147527}
+  transformPointB: {fileID: 3010203016475390859}
+  transformPointC: {fileID: 3010203015138848697}
+  shootRange: 5
+  isShooting: 0
+--- !u!114 &3010203016457701881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675621020388851987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce23bd760e912be409f0e3e36b91c86a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyCanvas: {fileID: 0}
+  fuseCanvas: {fileID: 0}
+  hasKey: 0
+  hasFuse: 0

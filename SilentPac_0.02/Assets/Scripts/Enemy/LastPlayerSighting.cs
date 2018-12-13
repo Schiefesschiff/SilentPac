@@ -39,6 +39,17 @@ public class LastPlayerSighting : MonoBehaviour
     {
         SwitchAlarms();
         MusicFading();
+
+        if (Input.GetKey(","))
+        {
+            lightHighIntensity += 0.1f;
+        }
+        if (Input.GetKey("."))
+        {
+            lightHighIntensity -= 0.1f;
+        }
+
+
     }
 
 
