@@ -55,16 +55,17 @@ public class HudController : MonoBehaviour
 
         //energy = health; //Testfunktion Ende
 
-        //if (energy >= 20f)
-        //{
-        //    MakeButtonBright(buttonImage_B);
-        //    MakeButtonBright(buttonImage_X);
-        //}
-        //else
-        //{
-        //    MakeButtonDark(buttonImage_B);
-        //    MakeButtonDark(buttonImage_X);
-        //}
+        if (energy >= 20f)        //makes B and X buttons bright when player has enough energy
+
+        {
+            MakeButtonBright(buttonImage_B);
+            MakeButtonBright(buttonImage_X);
+        }
+        else
+        {
+            MakeButtonDark(buttonImage_B);
+            MakeButtonDark(buttonImage_X);
+        }
 
         
         healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health, 2f * Time.deltaTime);
