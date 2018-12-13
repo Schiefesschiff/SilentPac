@@ -84,7 +84,7 @@ public class PlayerEnergy : MonoBehaviour
             return false;
         }
         hud.ReduceHealth(currentHealth, currentStanima);
-        return true; 
+        return true;
     }
 
     public void StopConsume(int value)

@@ -27,8 +27,11 @@ public class HudController : MonoBehaviour
     public Image buttonImage_X;
     public Image buttonImage_Y;
 
+    private PlayerEnergy playerEnergy;
+
     void Start()
     {
+        playerEnergy = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerEnergy>();
         keyImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);
         fuseImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);
         MakeButtonDark(buttonImage_Y);
@@ -55,7 +58,7 @@ public class HudController : MonoBehaviour
 
         //energy = health; //Testfunktion Ende
 
-        if (energy >= 20f)        //makes B and X buttons bright when player has enough energy
+        if (playerEnergy.currentStanima >= 5f)        //makes B and X buttons bright when player has enough energy
 
         {
             MakeButtonBright(buttonImage_B);
