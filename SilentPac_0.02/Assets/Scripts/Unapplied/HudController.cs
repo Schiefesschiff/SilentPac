@@ -38,7 +38,7 @@ public class HudController : MonoBehaviour
         energy = maxEnergy;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //need to get health and energy from the playerController here
 
@@ -65,16 +65,17 @@ public class HudController : MonoBehaviour
         //    MakeButtonDark(buttonImage_B);
         //    MakeButtonDark(buttonImage_X);
         //}
-        healthBar.fillAmount = Mathf.Lerp(1, health, 0.5f);
-        energyBar.fillAmount = Mathf.Lerp(1, energy, 0.5f);
+
+        
+        healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health, 2f * Time.deltaTime);
+        energyBar.fillAmount = Mathf.Lerp(energyBar.fillAmount, energy, 2f* Time.deltaTime);
     }
 
-    public void ReduceHealth(int _health , int _energy)
+    public void ReduceHealth(float _health , float _energy)
     {
         health = _health / maxHealth;
         energy = _energy / maxEnergy;
     }
-
 
 
     public void AddKeyToInventoryUI()

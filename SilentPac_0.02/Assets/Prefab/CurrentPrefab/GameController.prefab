@@ -271,8 +271,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 1000, y: 1000, z: 1000}
   resetPosition: {x: 1000, y: 1000, z: 1000}
-  lightHighIntensity: 1.43
-  lightLowIntensity: 0.18
+  lightHighIntensity: 2
+  lightLowIntensity: 1
   fadeSpeed: 7
   musicFadeSpeed: 1
 --- !u!120 &1766672327

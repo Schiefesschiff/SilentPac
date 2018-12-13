@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public GameObject ParticelPullEnergy;
     public float  turnSpeed = 10f;
     public float speedDampTime = 0.1f;
+    public float RecoverEnergySpeed = 0.5f;
     public Transform ParticelPos;
     private Vector2 input;
     private float angle;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool pullEnergy;
     private bool shoot;
     private bool ArcadeSight;
+    private bool chargingEnergy = false;
 
     private void Start()
     {
@@ -46,7 +48,7 @@ public class PlayerController : MonoBehaviour
             Move();
     }
 
-    // input base on horizontal (a,b,<,>) and vertical(w,s,^,v) keys
+
     void GetInput()
     {
         input.x = Input.GetAxisRaw(StringCollection.INPUT_HORIZONTAL);
@@ -66,7 +68,9 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetBool("PullEnergy", true);
                 ParticelPullEnergy.SetActive(true);
-                playerEnergy.AddStamina(10);
+
+                playerEnergy.AddStamina(RecoverEnergySpeed);
+
             }
             
         }

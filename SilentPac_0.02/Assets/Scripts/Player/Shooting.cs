@@ -88,6 +88,8 @@ public class Shooting : MonoBehaviour
             {
                 print("treffer auf enemy");
                 hit.transform.GetComponent<EnemyAI>().GotDamage(1);
+                hit.transform.GetComponent<EnemyAI>().Shocked();
+
             }
         }
         else

@@ -220,12 +220,15 @@ MonoBehaviour:
   chaseWaitTime: 5
   patrolWaitTime: 1
   SearchingPoints: 3
+  health: 0
+  maxHeatl: 100
   SearchingRadius: 6
   patrolWayPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  isShocked: 0
 --- !u!114 &1256083263530491198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +413,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: ad357f8830b178c46ad2a21fd5fa80d7, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e8209e75b9229845b7118bba0ea1231, type: 2}
     - target: {fileID: 400074, guid: ad357f8830b178c46ad2a21fd5fa80d7, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.5895808

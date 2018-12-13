@@ -34,6 +34,7 @@ public class EnemyAI : MonoBehaviour
     private int wayPointIndex;
     private int SearchingPointIndex = 0;
     private bool isDeath = false;
+    private bool isShocked = false;
 
     private ThirdPersonCharacter character;
 
@@ -55,8 +56,10 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        if (!isDeath)
+        if (!isDeath && !isShocked )
         {
+            nav.enabled = true;
+
             if (enemySight.playerInSight)
             {
                 Attacking();
@@ -82,20 +85,41 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            anim.SetBool("DeathTrigger", true);
-            character.Move(Vector3.zero, false, false, currentSpeed);
-            nav.enabled = false;
+            if (isDeath)
+            {
+                anim.SetBool("DeathTrigger", true);
+                character.Move(Vector3.zero, false, false, currentSpeed);
+                nav.enabled = false;
+            }
         }
+
+        if (isShocked)
+        {
+            anim.SetBool("isShocked", true);
+        }
+    }
+
+    public void DeShocked()
+    {
+        isShocked = false;
+        anim.SetBool("isShocked", false);
 
     }
 
+    public void Shocked()
+    {
+        anim.SetBool("Attack", false);
+        isShocked = true;
+        nav.enabled = false;
+        character.Move(Vector3.zero, false, false, currentSpeed);
+    }
 
    public void GotDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
         {
-            isDeath = true;
+            //isDeath = true;
         }
     }
 

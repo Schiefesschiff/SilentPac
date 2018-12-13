@@ -8,7 +8,7 @@ public class PlayerEnergy : MonoBehaviour
     public int currentHealth { get ; private set;}      // read from outside change only from this script
 
     public int maxStanima = 100;
-    public int currentStanima { get; private set; }
+    public float currentStanima { get; private set; }
 
     private HudController hud;
     private int reduceValueStamina;
@@ -25,11 +25,26 @@ public class PlayerEnergy : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("q"))
-        {
-            TakeDamage(30);
-        }
+        //if (Input.GetKeyDown("q"))
+        //{
+        //    TakeDamage(30);
+        //}
+        //if (Input.GetKeyDown("y"))
+        //{
+        //    UseStanima(3);
+        //}
+        //if (Input.GetKeyDown("x"))
+        //{
+        //    AddStamina(3);
+        //}
+        //if (Input.GetKeyDown("c"))
+        //{
+        //    StopConsume(100);
+        //}
+                          
+        //print("current health "+ currentHealth);
 
+        //print("current Energy "+ currentStanima);
 
         if (reduceValueStamina > 0)
         {
@@ -59,14 +74,16 @@ public class PlayerEnergy : MonoBehaviour
 
     }
 
-    public bool AddStamina(int value)
+    public bool AddStamina(float value)
     {
         currentStanima += value;
         if (currentStanima >= maxStanima)
         {
             currentStanima = maxStanima;
+            hud.ReduceHealth(currentHealth, currentStanima);
             return false;
         }
+        hud.ReduceHealth(currentHealth, currentStanima);
         return true; 
     }
 
@@ -93,6 +110,7 @@ public class PlayerEnergy : MonoBehaviour
             return true;
         }
         reduceValueStamina -= use;
+
         return false;
 
     }
@@ -100,6 +118,7 @@ public class PlayerEnergy : MonoBehaviour
     void reduceStamina(int s)
     {
         currentStanima -= s;
+        hud.ReduceHealth(currentHealth, currentStanima);
     }
 
 
