@@ -216,7 +216,6 @@ public class EnemyAI : MonoBehaviour
         if (nav.destination == lastPlayerSighting.resetPosition || nav.remainingDistance < nav.stoppingDistance)
         {
             //patrolTimer += Time.deltaTime;
-
             //if (patrolTimer >= patrolWaitTime)
             //{
                 if (wayPointIndex == patrolWayPoints.Length - 1)
