@@ -28,37 +28,21 @@ public class OptionsMenuController : MonoBehaviour
             enabled = false;
             Debug.Log("Can't load PitchTest settings.");
             return;
-        }
-        
-        if (postProcessVolume.sharedProfile.TryGetSettings<ColorGrading>(out colorGrading))
-            Debug.Log("colorGrading.");
-
+        }        
     }
-
-    private void Update()
-    {
-        if (postProcessVolume.sharedProfile.TryGetSettings<ColorGrading>(out colorGrading))
-        { 
-            Debug.Log("colorGrading.");
-        }
-    }
-
-    public void SetGamma(float newGamma)
+    
+    public void SetGamma(float newGamma)    //Setzt den PostProcessing-Gamma.
     {
         if (postProcessVolume.sharedProfile.TryGetSettings<ColorGrading>(out colorGrading))
         {
             Debug.Log("Got gamma value: " + colorGrading.gamma.value);
             newGammaVector = new Vector4 (0, 0, 0, newGamma);
             colorGrading.gamma.value = newGammaVector;                
-            Debug.Log("Setting value to: " + newGammaVector);
-
-            //. postProcessVolume.sharedProfile.                 tch.GetValue<float>());//get current value
-            //colorGrading.gamma // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //pitchTestSettings.pitch.SetValue(new FloatParameter() { value = 5 });//<- modify the value on the img effect
+            Debug.Log("Setting value to: " + newGammaVector);            
         }
     }
 
-    public void SetContrast(float newContrast)
+    public void SetContrast(float newContrast)  //Setzt den PostProcessing-Contrast.
     {
         if (postProcessVolume.sharedProfile.TryGetSettings<ColorGrading>(out colorGrading))
         {
@@ -68,26 +52,9 @@ public class OptionsMenuController : MonoBehaviour
         }
     }
 
-    public void SetVolume(float volume)
+    public void SetVolume(float volume)     //Setzt Volume vom MainMixer.
     {
         Debug.Log("Setting Volume to " + volume + ".");
         audioMixer.SetFloat("volume", volume);
     }
-
 }
-/*
-[SerializeField]
-private PostProcessVolume m_PostProcessVolume = null;
-
-private void ControlAmbientOcclusion()
-{
-    if (m_PostProcessVolume != null)
-    {
-        AmbientOcclusion ambientOcclusion;
-        if (m_PostProcessVolume.profile.TryGetSettings(out ambientOcclusion))
-        {
-            m_AmbientOcclusion.intensity.value = 1;
-        }
-    }
-}
-*/
