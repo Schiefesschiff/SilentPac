@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
     private float MoveAxeY;
     private float rotationX;
     private float rotationY;
-    private float minimumY;
+    public float minimumY;
     public GameObject secondCamera;
     public float minDistanceCamPlayer;
 
@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         //secondCamera = this.gameObject.transform.GetChild(0).gameObject;
-        minimumY = offsetPos.y;
+     //   minimumY = offsetPos.y;
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 

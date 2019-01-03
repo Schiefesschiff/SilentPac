@@ -64,7 +64,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 311
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -97,17 +97,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offsetPos: {x: 3.66, y: 1.3, z: 0}
-  AutoSmoothnessCameraMove: 5
+  offsetPos: {x: 1.1546702, y: 0, z: -0.6056455}
+  AutoSmoothnessCameraMove: 10
   AutoSmoothnessLookAtSpeed: 10
-  rightStickRotationSpeed: 5
-  RotateSlopeSpeed: 0.5
-  maxSlopAngle: 3.55
+  rightStickRotationSpeed: 3
+  RotateSlopeSpeed: 0.1
+  maxSlopAngle: 1
   SecondCameraPos: {fileID: 0}
   Alarm: 0
   ArcadeSight: 0
+  minimumY: 0
   secondCamera: {fileID: 0}
-  minDistanceCamPlayer: 2.14
+  minDistanceCamPlayer: 1.09
   timeTakenDuringLerp: 0.2
   stopArcadeMode: 0
 --- !u!114 &635979394
