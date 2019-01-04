@@ -8,13 +8,17 @@ public class FusePickup : MonoBehaviour
 
     private GameObject player;
     private PlayerInventory playerInventory;
+    private GameObject radar;
+    private GoalRadarController goalRadarController;
     public HudController hudController;
     
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        hudController = GameObject.FindGameObjectWithTag("HUD").GetComponent<HudController>();
         playerInventory = player.GetComponent<PlayerInventory>();
+        radar = GameObject.FindGameObjectWithTag("Radar");
+        goalRadarController = radar.GetComponent<GoalRadarController>();
+        hudController = GameObject.FindGameObjectWithTag("HUD").GetComponent<HudController>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -24,9 +28,10 @@ public class FusePickup : MonoBehaviour
             //AudioSource.PlayClipAtPoint(keyGrab, transform.position);
             playerInventory.AddFuseToInventory();
             hudController.AddFuseToInventoryUI();
+            goalRadarController.GoToNextAvailableWaypoint();
             Debug.Log("fuse says bye");
             Destroy(gameObject);
-        }        
+        }
     }
 
 }

@@ -9,9 +9,11 @@ public class FuseboxController : MonoBehaviour
 
     private GameObject player;
     private PlayerInventory playerInventory;
-    public GameObject dooropener;
+    private GameObject radar;
+    private GoalRadarController goalRadarController;
+    private GameObject dooropener;
     private DooropenerInteraction dooropenerInteraction;
-    public HudController hudController;
+    private HudController hudController;
 
     void Awake()
     {
@@ -20,6 +22,8 @@ public class FuseboxController : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
         playerInventory = player.GetComponent<PlayerInventory>();
+        radar = GameObject.FindGameObjectWithTag("Radar");
+        goalRadarController = radar.GetComponent<GoalRadarController>();
         hudController = GameObject.FindGameObjectWithTag("HUD").GetComponent<HudController>();
 
         dooropener = GameObject.FindGameObjectWithTag("Dooropener");
@@ -34,6 +38,7 @@ public class FuseboxController : MonoBehaviour
             Debug.Log("I was repaired! :) (I'm a fusebox.)");
             hudController.RemoveFuseFromInventoryUI();
             playerInventory.RemoveFuseFromInventory();
+            goalRadarController.GoToNextAvailableWaypoint();
             dooropenerInteraction.TurnOn();
             showTooltip = false;
         }

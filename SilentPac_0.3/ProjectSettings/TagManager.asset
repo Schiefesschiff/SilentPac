@@ -13,6 +13,7 @@ TagManager:
   - Dooropener
   - Door
   - Forks
+  - Radar
   layers:
   - Default
   - TransparentFX
