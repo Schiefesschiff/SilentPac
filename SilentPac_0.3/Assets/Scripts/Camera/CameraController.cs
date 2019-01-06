@@ -37,19 +37,18 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         //secondCamera = this.gameObject.transform.GetChild(0).gameObject;
-     //   minimumY = offsetPos.y;
+        //minimumY = offsetPos.y;
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     private void Update()
     {
         //CameraCollision();        // zoom to player( background wall)
+        InputCameraControll();
     }
 
     private void FixedUpdate()
     {
-        InputCameraControll();
-
         if (Input.GetButtonDown(StringCollection.INPUT_RSTICKPRESS))
         {
             SetCameraBehind();
@@ -149,6 +148,8 @@ public class CameraController : MonoBehaviour
         input.y = Input.GetAxis(StringCollection.INPUT_VERTICAL);
         ArcadeSight = Input.GetButton(StringCollection.INPUT_RB);
     }
+
+
 
     // Move Camera to the player position + current offset
     //offset is modified by the rotationAroundTarget coroutine

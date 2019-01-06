@@ -220,7 +220,7 @@ public class EnemyAI : MonoBehaviour
                         if (dist < currentDist && dist > 10)
                         {
                             currentDist = dist;
-                            print(currentDist);
+                            //print(currentDist);
                             currentSearchPoint = lastPlayerSighting.forks[i].transform.position;
                         }
                     }

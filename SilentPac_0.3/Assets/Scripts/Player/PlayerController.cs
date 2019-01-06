@@ -7,6 +7,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class PlayerController : MonoBehaviour
 {
+    public Transform camTarget;
     public GameObject ParticelPullEnergy;
     public float  turnSpeed = 10f;
     public float speedDampTime = 0.1f;
@@ -23,13 +24,15 @@ public class PlayerController : MonoBehaviour
     public bool pullEnergy;
     private bool shoot;
     private bool ArcadeSight;
+    private Vector3 curCamTargetPos;
+
 
     private void Start()
     {
         playerEnergy = GetComponent<PlayerEnergy>();
         cam = Camera.main.transform.transform;
         anim = GetComponent<Animator>();
-
+        curCamTargetPos = camTarget.position;
     }
        
     private void Update()
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour
             Rotation();
         }
 
+
         if (!cam.GetComponent<CameraController>().stopArcadeMode)
         {
             Move();
@@ -57,8 +61,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-
+    
     void GetInput()
     {
         input.x = Input.GetAxisRaw(StringCollection.INPUT_HORIZONTAL);
@@ -68,7 +71,7 @@ public class PlayerController : MonoBehaviour
         pullEnergy = Input.GetButton(StringCollection.INPUT_RB);
 
     }
-
+       
     void PullEnergy(bool pull)
     {
         if (pull)
