@@ -97,13 +97,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offsetPos: {x: 1.1546702, y: 0, z: -0.6056455}
+  offsetPos: {x: 1, y: 0, z: 0}
   AutoSmoothnessCameraMove: 10
   AutoSmoothnessLookAtSpeed: 10
   rightStickRotationSpeed: 3
   RotateSlopeSpeed: 0.1
   maxSlopAngle: 1
-  SecondCameraPos: {fileID: 0}
+  heigthPos: 25
   Alarm: 0
   ArcadeSight: 0
   minimumY: 0

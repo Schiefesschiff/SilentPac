@@ -12,7 +12,8 @@ public class CameraController : MonoBehaviour
     public float rightStickRotationSpeed = 10f;
     public float RotateSlopeSpeed = 4f;
     public float maxSlopAngle = 6f;
-    public GameObject SecondCameraPos;
+    //public GameObject SecondCameraPos;
+    public float heigthPos = 35f;
 
     public bool Alarm = false;      // control from LastPlayerSightning 
     public bool ArcadeSight;
@@ -42,14 +43,14 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        CameraCollision();
+        //CameraCollision();        // zoom to player( background wall)
     }
 
     private void FixedUpdate()
     {
         InputCameraControll();
 
-        if (Input.GetButtonDown(StringCollection.INPUT_Y))
+        if (Input.GetButtonDown(StringCollection.INPUT_RSTICKPRESS))
         {
             SetCameraBehind();
         }
@@ -100,7 +101,7 @@ public class CameraController : MonoBehaviour
     void MoveToSecondPos()
     {
         secondCamera.SetActive(true);
-        secondCamera.transform.position = Vector3.Lerp(secondCamera.transform.position, target.position + new Vector3(0,35,0), 5 * Time.deltaTime);
+        secondCamera.transform.position = Vector3.Lerp(secondCamera.transform.position, target.position + new Vector3(0,heigthPos,0), 5 * Time.deltaTime);
         secondCamera.transform.eulerAngles = new Vector3(90, 0, 0);
 
         SetCameraBehind();
