@@ -63,7 +63,6 @@ public class EnemyAI : MonoBehaviour
     {
         anim.SetBool("Attack", false);
 
-
         if (enemySight.playerInSight && playerEnergy.currentHealth > 0)
         {
             enemyStatus = EnemyStatus.Attacking;
@@ -77,7 +76,7 @@ public class EnemyAI : MonoBehaviour
             enemyStatus = EnemyStatus.Patrolling;
         }
 
-        if (isSearch && lastPlayerSighting.position == lastPlayerSighting.resetPosition)
+        if (isSearch && lastPlayerSighting.position == lastPlayerSighting.resetPosition && enemyStatus != EnemyStatus.Chasing)
         {
             enemyStatus = EnemyStatus.Searching;
         }

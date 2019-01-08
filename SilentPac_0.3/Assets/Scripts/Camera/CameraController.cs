@@ -99,11 +99,12 @@ public class CameraController : MonoBehaviour
 
     void MoveToSecondPos()
     {
+        stopArcadeMode = false;
         secondCamera.SetActive(true);
         secondCamera.transform.position = Vector3.Lerp(secondCamera.transform.position, target.position + new Vector3(0,heigthPos,0), 5 * Time.deltaTime);
         secondCamera.transform.eulerAngles = new Vector3(90, 0, 0);
 
-        SetCameraBehind();
+        //SetCameraBehind();
 
         _timeStartedLerping = Time.time;
         _startPosition = secondCamera.transform.position;
@@ -126,6 +127,7 @@ public class CameraController : MonoBehaviour
             if (percentageComplete >= 1.0f)
             {
                 secondCamera.SetActive(false);
+                SetCameraBehind();
                 StartCoroutine(StopArcadeMode());
                 //secondCamera.SetActive(false);
                 //stopArcadeMode = false;
@@ -156,15 +158,16 @@ public class CameraController : MonoBehaviour
     void SetCameraBehind()
     {
         Vector3 direction = transform.position - new Vector3(target.position.x, transform.position.y, target.position.z);
-
         angle = Vector3.SignedAngle(direction, -target.forward, target.up);
+
+        Vector3 targetOffsetPos = Quaternion.Euler(0, angle, 0) * offsetPos;
+        offsetPos = targetOffsetPos;
 
         targetPos = target.position + offsetPos;            // distance with offset
         transform.position = Vector3.Lerp(transform.position, targetPos, AutoSmoothnessCameraMove * Time.deltaTime);
 
 
-        Vector3 targetOffsetPos = Quaternion.Euler(0, angle, 0) * offsetPos;
-        offsetPos = targetOffsetPos;
+
         print(angle);
     }
 

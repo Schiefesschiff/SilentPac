@@ -517,6 +517,7 @@ GameObject:
   - component: {fileID: 613018641}
   - component: {fileID: 613018640}
   - component: {fileID: 613018639}
+  - component: {fileID: 5475395349876586040}
   - component: {fileID: 613018635}
   - component: {fileID: 613018636}
   - component: {fileID: 613018637}
@@ -598,6 +599,19 @@ CapsuleCollider:
   m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0.91, z: 0}
+--- !u!135 &5475395349876586040
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613018634}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &613018635
 MonoBehaviour:
   m_ObjectHideFlags: 0

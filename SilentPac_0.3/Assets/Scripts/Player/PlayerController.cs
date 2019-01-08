@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-
 public class PlayerController : MonoBehaviour
 {
     public Transform camTarget;
@@ -25,10 +24,12 @@ public class PlayerController : MonoBehaviour
     private bool shoot;
     private bool ArcadeSight;
     private Vector3 curCamTargetPos;
-
+    private SphereCollider col;
+    private List<Transform> forks = new List<Transform>();
 
     private void Start()
     {
+        col = GetComponent<SphereCollider>();
         playerEnergy = GetComponent<PlayerEnergy>();
         cam = Camera.main.transform.transform;
         anim = GetComponent<Animator>();
@@ -61,7 +62,39 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    
+
+    public Vector3 NextWayPoint()
+    {
+        Vector3 pos = Vector3.zero;
+        for (int i = 0; i < forks.Count; i++)
+        {
+            Vector3 direction = forks[i].transform.position - transform.position;
+            float angle = Vector3.Angle(direction, transform.forward);
+
+            if (angle < 100 * 0.5f)
+            {
+                pos = forks[i].transform.position;
+            }
+        }
+        return pos; 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Forks")
+        {
+            forks.Add(other.transform);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Forks")
+        {
+            forks.Remove(other.transform);
+        }
+    }
+
     void GetInput()
     {
         input.x = Input.GetAxisRaw(StringCollection.INPUT_HORIZONTAL);

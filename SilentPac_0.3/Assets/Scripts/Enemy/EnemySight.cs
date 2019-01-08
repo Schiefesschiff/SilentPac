@@ -44,7 +44,7 @@ public class EnemySight : MonoBehaviour
 
         previousSighting = lastPlayerSighting.position;
 
-        ShowSearchRadius();
+        //ShowSearchRadius();
 
         if (playerEnergy.currentHealth <= 0)                  // player is death?
         {
