@@ -20,19 +20,9 @@ public class GoalRadarController : MonoBehaviour
     
     void Update()
     {
-        //    newDirection = new Vector3(target.transform.position.x,
-        //                                   this.transform.position.y,
-        //                                   target.transform.position.z);
-
-        //newDirection = new Vector3(0f,
-        //                               currentTarget.transform.position.y,
-        //                               0f);
         if (currentTarget != null)
         {
-            newDirection = new Vector3(currentTarget.transform.position.x,
-                                           currentTarget.transform.position.y,
-                                           currentTarget.transform.position.z);
-
+            newDirection = new Vector3(currentTarget.transform.position.x, this.transform.position.y, currentTarget.transform.position.z);
             this.transform.LookAt(newDirection);
         }
         
@@ -83,28 +73,35 @@ public class GoalRadarController : MonoBehaviour
         }
     }
 
-    public void GoToNextAvailableWaypoint(int startPoint = 666) //goes to the next available waypoint from startPoint
-    {
-        if (startPoint == 666)            //defaults startPoint to currentWaypoint
-            startPoint = currentWaypoint;
-
-        int nextWaypoint = NextAvailableWaypoint(startPoint);
-
-        if (nextWaypoint == 666)
-            return;
-        else
-            GoToWaypoint(nextWaypoint);
+    public void GoToNextAvailableWaypoint() //goes to the next available waypoint from startPoint
+    {   
+        GoToWaypoint(NextAvailableWaypoint());
 
         return;
     }
 
-    public int NextAvailableWaypoint(int startPoint = 0) //recursive function to find the next available waypoint, finds the first available waypoint by default
+    public int FirstAvailableWaypoint(int startPoint = 0) //recursive function to find the next available waypoint, finds the first available waypoint by default
     {
         if (startPoint == 666 || startPoint >= radarWayPoints.Length)   //stop condition, check (NextAvailableWaypoint(startPoint) != 666) before setting Waypoint
             return 666;
         if (radarWayPoints[startPoint] != null) //test
             return startPoint;
         else
-            return (NextAvailableWaypoint(startPoint + 1)); //iteration
+            return (FirstAvailableWaypoint(startPoint + 1)); //iteration
     }
+
+    public int NextAvailableWaypoint()
+    {
+        for (int i = 1; i + currentWaypoint < radarWayPoints.Length; i++)
+        {
+            if (radarWayPoints[currentWaypoint + i] != null) //test
+                return (currentWaypoint + i);
+
+            Debug.Log("Did not find waypoint at i = " + i + " with currentWaypoint = " + currentWaypoint + ".");
+        }
+
+        Debug.Log("Could not find a next available radar waypoint after currentWaypoint: " + currentWaypoint + ". Defaulting to radar waypoint 0.");
+        return 0;
+    }
+    
 }
