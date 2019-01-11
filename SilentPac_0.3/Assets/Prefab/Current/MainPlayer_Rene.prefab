@@ -483,7 +483,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602455181}
   m_LocalRotation: {x: 0.071832724, y: 0.012369389, z: 0.038419217, w: 0.99659973}
-  m_LocalPosition: {x: -0.07654996, y: 0.36752188, z: -0.36578575}
+  m_LocalPosition: {x: -0.054, y: 0.53, z: -0.187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1450816261}
@@ -595,7 +595,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.24
+  m_Radius: 0.42
   m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0.91, z: 0}
@@ -607,10 +607,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613018634}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 14.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &613018635
 MonoBehaviour:
@@ -672,9 +672,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28e5c98772888546ace94548f2f94b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camTarget: {fileID: 0}
+  camTarget: {fileID: 602455182}
   ParticelPullEnergy: {fileID: 6143794700194316832}
-  turnSpeed: 10
+  turnSpeed: 5
   speedDampTime: 0.1
   RecoverEnergySpeed: 0.5
   ParticelPos: {fileID: 0}

@@ -99,9 +99,13 @@ public class PlayerController : MonoBehaviour
     {
         input.x = Input.GetAxisRaw(StringCollection.INPUT_HORIZONTAL);
         input.y = Input.GetAxisRaw(StringCollection.INPUT_VERTICAL);
-        run = Input.GetButton(StringCollection.INPUT_LB);      
-        shoot = Input.GetButton(StringCollection.INPUT_X);
+        //shoot = Input.GetButton(StringCollection.INPUT_X);
         pullEnergy = Input.GetButton(StringCollection.INPUT_RB);
+
+        run = Input.GetButton(StringCollection.INPUT_LB);
+        run = Input.GetKey(KeyCode.LeftShift);
+        run = cam.transform.GetComponent<CameraController>().ArcadeSight;
+
 
     }
        

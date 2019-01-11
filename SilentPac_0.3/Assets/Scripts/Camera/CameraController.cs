@@ -148,7 +148,20 @@ public class CameraController : MonoBehaviour
 
         input.x = Input.GetAxis(StringCollection.INPUT_HORIZONTAL);         // left Sticks
         input.y = Input.GetAxis(StringCollection.INPUT_VERTICAL);
-        ArcadeSight = Input.GetButton(StringCollection.INPUT_RB);
+        //ArcadeSight = Input.GetButton(StringCollection.INPUT_RB);
+
+        //ArcadeSight = Input.GetKeyDown("space");
+
+
+        if (Input.GetKeyDown("space") || Input.GetButtonDown(StringCollection.INPUT_RB))
+        {
+            ArcadeSight = !ArcadeSight;
+
+        }
+
+        rotationX = Input.GetAxis("Mouse X") * 0.5f;
+        rotationY = Input.GetAxis("Mouse Y") * -0.5f;
+
     }
 
 

@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 1000, y: 1000, z: 1000}
+  positionEnemy2: {x: 1000, y: 1000, z: 1000}
   resetPosition: {x: 1000, y: 1000, z: 1000}
   lightHighIntensity: 0.1
   lightLowIntensity: 0
