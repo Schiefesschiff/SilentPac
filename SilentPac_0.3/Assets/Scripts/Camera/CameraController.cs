@@ -159,8 +159,11 @@ public class CameraController : MonoBehaviour
 
         }
 
-        rotationX = Input.GetAxis("Mouse X") * 0.5f;
-        rotationY = Input.GetAxis("Mouse Y") * -0.5f;
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+        {
+            rotationX = Input.GetAxis("Mouse X") * 0.5f;
+            rotationY = Input.GetAxis("Mouse Y") * -0.5f;
+        }
 
     }
 

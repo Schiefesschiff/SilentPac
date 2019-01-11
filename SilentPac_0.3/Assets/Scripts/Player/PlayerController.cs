@@ -103,10 +103,12 @@ public class PlayerController : MonoBehaviour
         pullEnergy = Input.GetButton(StringCollection.INPUT_RB);
 
         run = Input.GetButton(StringCollection.INPUT_LB);
-        run = Input.GetKey(KeyCode.LeftShift);
-        run = cam.transform.GetComponent<CameraController>().ArcadeSight;
+        //run = Input.GetKey(KeyCode.LeftShift);
 
-
+        if (cam.transform.GetComponent<CameraController>().ArcadeSight || Input.GetKey(KeyCode.LeftShift))
+        {
+            run = true;
+        }
     }
        
     void PullEnergy(bool pull)
