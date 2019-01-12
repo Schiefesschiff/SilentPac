@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7093884960584489107}
   - component: {fileID: 7979954800436425125}
   - component: {fileID: 4710608373196720530}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TCross (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

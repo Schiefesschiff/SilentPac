@@ -9,6 +9,7 @@ public class EnemySight : MonoBehaviour
     public bool playerInSight;
     public Vector3 personalLastSighting;        // position from hearing
 
+    [SerializeField] private LayerMask walls;
     private PlayerEnergy playerEnergy;
     private NavMeshAgent nav;
     private SphereCollider col;
@@ -77,14 +78,15 @@ public class EnemySight : MonoBehaviour
             if (angle < fieldOfViewAngle * 0.5f)
                 {
                     RaycastHit hit;
-                    Debug.DrawLine(transform.position, player.transform.position + transform.up, Color.red);
+                    //Debug.DrawLine(transform.position + transform.up, player.transform.position + transform.up, Color.red);
 
                     // raycast +1hight (transform.up) and collder radius
-                    if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, col.radius))
+                    if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, col.radius, walls))
                     {
+                        Debug.DrawLine(transform.position + transform.up, hit.point, Color.red);
+
                         if (hit.collider.gameObject == player)
                         {
-
                             playerInSight = true;
                             lastPlayerSighting.position = player.transform.position; // alarm 
                         }

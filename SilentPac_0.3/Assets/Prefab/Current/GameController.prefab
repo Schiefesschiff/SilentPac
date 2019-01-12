@@ -68,7 +68,7 @@ MonoBehaviour:
   startDialogue:
     name: Commando
     sentences:
-    - 'Klaus Dies ist der Bunker aus der Einsatz besprechung '
+    - 'Bob Dies ist der Bunker aus der Einsatz besprechung '
     - "Besorgen Sie die beiden KeyCards und hacke dich in die 2 Computer \n"
     - "Danach Verschwinde So schnell wie m\xF6glich \nCommando out!"
 --- !u!82 &182293041
@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 1000, y: 1000, z: 1000}
+  positionEnemy2: {x: 1000, y: 1000, z: 1000}
   resetPosition: {x: 1000, y: 1000, z: 1000}
   lightHighIntensity: 0.1
   lightLowIntensity: 0

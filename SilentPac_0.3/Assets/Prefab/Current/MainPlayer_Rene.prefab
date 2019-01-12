@@ -122,7 +122,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 613018642}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &217771841
 GameObject:
@@ -280,7 +280,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 613018642}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &463690899
 MeshFilter:
@@ -468,7 +468,10 @@ GameObject:
   m_Component:
   - component: {fileID: 602455182}
   - component: {fileID: 602455183}
-  m_Layer: 0
+  - component: {fileID: 1020148823}
+  - component: {fileID: 9007808739522975309}
+  - component: {fileID: 1020148824}
+  m_Layer: 11
   m_Name: CameraObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,12 +485,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602455181}
-  m_LocalRotation: {x: 0.071832724, y: 0.012369389, z: 0.038419217, w: 0.99659973}
-  m_LocalPosition: {x: -0.07654996, y: 0.36752188, z: -0.36578575}
+  m_LocalRotation: {x: 0.5637232, y: -0.00750025, z: -0.008468611, w: 0.82588637}
+  m_LocalPosition: {x: 0.028200626, y: 0.9471712, z: -0.060295105}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1450816261}
-  m_RootOrder: 1
+  m_Father: {fileID: 613018642}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &602455183
 Rigidbody:
@@ -505,6 +508,49 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 32
   m_CollisionDetection: 0
+--- !u!135 &1020148823
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602455181}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.09
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9007808739522975309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602455181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f5999279f870f47bea79db28104320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strenght: 0.5
+  target: {fileID: 1450816261}
+  heigth: 0
+--- !u!114 &1020148824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602455181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f5999279f870f47bea79db28104320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strenght: 3
+  target: {fileID: 284028753}
+  heigth: 0.5
 --- !u!1 &613018634
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +568,7 @@ GameObject:
   - component: {fileID: 613018636}
   - component: {fileID: 613018637}
   - component: {fileID: 613018638}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MainPlayer_Rene
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -542,6 +588,7 @@ Transform:
   m_Children:
   - {fileID: 1077809923}
   - {fileID: 764276611}
+  - {fileID: 602455182}
   - {fileID: 463690897}
   - {fileID: 661128885}
   - {fileID: 779683651}
@@ -595,7 +642,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.24
+  m_Radius: 0.54
   m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0.91, z: 0}
@@ -607,10 +654,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613018634}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
+  m_IsTrigger: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 14.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &613018635
 MonoBehaviour:
@@ -672,13 +719,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28e5c98772888546ace94548f2f94b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camTarget: {fileID: 0}
+  camTarget: {fileID: 602455182}
   ParticelPullEnergy: {fileID: 6143794700194316832}
-  turnSpeed: 10
+  turnSpeed: 5
   speedDampTime: 0.1
   RecoverEnergySpeed: 0.5
   ParticelPos: {fileID: 0}
   pullEnergy: 0
+  sphereCol: {fileID: 0}
+  forks: []
 --- !u!1 &640602648
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +790,7 @@ Transform:
   - {fileID: 348899360}
   - {fileID: 62593824}
   m_Father: {fileID: 613018642}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &661734483
 GameObject:
@@ -927,7 +976,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 613018642}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &795490111
 GameObject:
@@ -1421,7 +1470,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 613018642}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1427779893
 GameObject:
@@ -1482,7 +1531,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 284028753}
-  - {fileID: 602455182}
   m_Father: {fileID: 62593824}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2014,15 +2062,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27a18dc1668ea2f4186348fccfbf2e25, type: 3}
---- !u!4 &4523131487725867662 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2448832128752785370, guid: 27a18dc1668ea2f4186348fccfbf2e25,
-    type: 3}
-  m_PrefabInstance: {fileID: 2251408143312962900}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6143794700194316832 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5367656877248595828, guid: 27a18dc1668ea2f4186348fccfbf2e25,
+    type: 3}
+  m_PrefabInstance: {fileID: 2251408143312962900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4523131487725867662 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2448832128752785370, guid: 27a18dc1668ea2f4186348fccfbf2e25,
     type: 3}
   m_PrefabInstance: {fileID: 2251408143312962900}
   m_PrefabAsset: {fileID: 0}

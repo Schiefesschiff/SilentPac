@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2818261990209718540}
   - component: {fileID: 2818261990209718541}
   - component: {fileID: 635979394}
-  - component: {fileID: 1089010229}
+  - component: {fileID: 246885423}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -65,7 +65,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 311
+    m_Bits: 3383
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -97,21 +97,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234ac579d0757df45913d285a1ad8306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camCollision:
+    serializedVersion: 2
+    m_Bits: 3072
+  MouseControllOn: 0
   target: {fileID: 0}
-  offsetPos: {x: 1, y: 0, z: 0}
-  AutoSmoothnessCameraMove: 10
-  AutoSmoothnessLookAtSpeed: 10
+  offsetPos: {x: 2, y: 0, z: 0}
+  AutoSmoothnessCameraMove: 20
+  AutoSmoothnessLookAtSpeed: 20
   rightStickRotationSpeed: 3
   RotateSlopeSpeed: 0.1
   maxSlopAngle: 1
   heigthPos: 25
+  mouseSpeedX: 0.5
+  mouseSpeedY: 0.5
   Alarm: 0
   ArcadeSight: 0
   minimumY: 0
   secondCamera: {fileID: 0}
-  minDistanceCamPlayer: 1.09
-  timeTakenDuringLerp: 0.2
-  stopArcadeMode: 0
+  minDistanceCamPlayer: 2
+  stopMove: 0
 --- !u!114 &635979394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +177,7 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &1089010229
+--- !u!114 &246885423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,11 +205,11 @@ MonoBehaviour:
       occlusionCullingAccuracy: 2
       enableTemporalReprojection: 1
       temporalReprojectionFactor: 0.9
-      resolution: {x: 320, y: 176, z: 256}
+      resolution: {x: 160, y: 88, z: 128}
       farClipPlaneDistance: 50
       density: 0.25
       anisotropy: 0.5
-      color: {r: 0.00065529346, g: 0, b: 0.25, a: 1}
+      color: {r: 0.00028538704, g: 0, b: 0.25, a: 1}
       colorStrength: 0.25
     _computeMaximumDepthComputeShader: {fileID: 7200000, guid: a5d52c8a306e8b746ab60b306575aa3e,
       type: 3}

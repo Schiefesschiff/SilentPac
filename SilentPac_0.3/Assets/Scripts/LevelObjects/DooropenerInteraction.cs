@@ -72,7 +72,7 @@ public class DooropenerInteraction : MonoBehaviour
         {
             if (!hasEnergy)
             {
-                Debug.Log("Repair the fusebox to give energy to this terminal.");
+                //Debug.Log("Repair the fusebox to give energy to this terminal.");
             }
             else
             {

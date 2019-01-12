@@ -84,7 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strength: 1
   overrideColor: 0
-  overridingColor: {r: 0.9999, g: 0.9999, b: 0.9999, a: 0.9999}
+  overridingColor: {r: 0, g: 0.022034826, b: 0.9999, a: 1}
   useShadow: 1
   shadowMapRenderTexture: {fileID: 0}
   useCookie: 1
@@ -249,6 +249,9 @@ MonoBehaviour:
   fieldOfViewAngle: 110
   playerInSight: 0
   personalLastSighting: {x: 0, y: 0, z: 0}
+  walls:
+    serializedVersion: 2
+    m_Bits: 3072
   testangle: 0
   winkel1: {fileID: 0}
   winkel2: {fileID: 0}
@@ -264,6 +267,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18aef3178b7d72346b11570739f45f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Enemy2Mask:
+    serializedVersion: 2
+    m_Bits: 3072
+  Enemy2: 1
   patrolSpeed: 1.6
   chaseSpeed: 3.5
   chaseWaitTime: 5
@@ -271,7 +278,6 @@ MonoBehaviour:
   searchWaitTime: 1
   SearchingPoints: 2
   patrolWayPoints:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   SearchingPointIndex: 0

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public LayerMask camCollision;
+    public bool MouseControllOn;
     private PlayerController playerController;
     public Transform target;
     public Vector3 offsetPos;
@@ -14,6 +16,9 @@ public class CameraController : MonoBehaviour
     public float maxSlopAngle = 6f;
     //public GameObject SecondCameraPos;
     public float heigthPos = 35f;
+
+    public float mouseSpeedX = 0.5f;
+    public float mouseSpeedY = 0.5f;
 
     public bool Alarm = false;      // control from LastPlayerSightning 
     public bool ArcadeSight;
@@ -29,10 +34,8 @@ public class CameraController : MonoBehaviour
     public GameObject secondCamera;
     public float minDistanceCamPlayer;
 
-    public float timeTakenDuringLerp = 1f;      // how long zoom down (time)
-    private float _timeStartedLerping;
     private Vector3 _startPosition;                     // start position for second camera
-    public bool stopArcadeMode = false;
+    public bool stopMove = false;
 
     private void Awake()
     {
@@ -43,7 +46,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        //CameraCollision();        // zoom to player( background wall)
+        CameraCollision();        // zoom to player( background wall)
         InputCameraControll();
     }
 
@@ -54,91 +57,25 @@ public class CameraController : MonoBehaviour
             SetCameraBehind();
         }
 
-        RotateARoundTarget(rotationX);
-        MoveWithTarget();
-        LookAtTarget();
-        //RotateBehindPlayer();
-        RotateSlope(rotationY);
+        if (!ArcadeSight)
+        {
+            RotateARoundTarget(rotationX);
+            MoveWithTarget();
+            LookAtTarget();
+            //RotateBehindPlayer();
+            RotateSlope(rotationY);
+        }
 
         if(ArcadeSight)
         {
            MoveToSecondPos();
         }
-        else
-        {
-            ReturnToNormalPos();
-        }
-
-    }
-
-
-    
-    public bool ResetCameraPos()
-    {
-        if (!stopArcadeMode)
-        {
-            return false;
-        }
-        else
-        {
-
-            return true;
-        }
-    }
-
-    public float CamEulerAngel()        // for playercontrollern (move)
-    {
-        if (ArcadeSight)
-        {
-            return secondCamera.transform.eulerAngles.y;
-        }
-
-        return transform.eulerAngles.y;
-
     }
 
     void MoveToSecondPos()
     {
-        stopArcadeMode = false;
-        secondCamera.SetActive(true);
-        secondCamera.transform.position = Vector3.Lerp(secondCamera.transform.position, target.position + new Vector3(0,heigthPos,0), 5 * Time.deltaTime);
-        secondCamera.transform.eulerAngles = new Vector3(90, 0, 0);
-
-        //SetCameraBehind();
-
-        _timeStartedLerping = Time.time;
-        _startPosition = secondCamera.transform.position;
-    }
-
-    void ReturnToNormalPos()
-    {
-        if (secondCamera.activeSelf)
-        {
-            stopArcadeMode = true;
-            float timeSinceStarted = Time.time - _timeStartedLerping;
-            float percentageComplete = timeSinceStarted / timeTakenDuringLerp;
-
-            targetPos = target.position + offsetPos;
-            secondCamera.transform.position = Vector3.Lerp(_startPosition, targetPos, percentageComplete);
-
-            targetRotation = Quaternion.LookRotation(target.position - secondCamera.transform.position);
-            secondCamera.transform.rotation = Quaternion.Slerp(secondCamera.transform.rotation, targetRotation, percentageComplete);
-
-            if (percentageComplete >= 1.0f)
-            {
-                secondCamera.SetActive(false);
-                SetCameraBehind();
-                StartCoroutine(StopArcadeMode());
-                //secondCamera.SetActive(false);
-                //stopArcadeMode = false;
-            }
-        }
-    }
-
-    IEnumerator StopArcadeMode()
-    {
-        yield return new WaitForSeconds(0.2f);
-        stopArcadeMode = false;
+        this.transform.position = Vector3.Lerp(this.transform.position, target.position + new Vector3(0, heigthPos, 0), 5 * Time.deltaTime);
+        this.transform.eulerAngles = new Vector3(90, 0, 0);
     }
 
     void InputCameraControll()
@@ -148,10 +85,42 @@ public class CameraController : MonoBehaviour
 
         input.x = Input.GetAxis(StringCollection.INPUT_HORIZONTAL);         // left Sticks
         input.y = Input.GetAxis(StringCollection.INPUT_VERTICAL);
-        ArcadeSight = Input.GetButton(StringCollection.INPUT_RB);
+        //ArcadeSight = Input.GetButton(StringCollection.INPUT_RB);
+
+        //ArcadeSight = Input.GetKeyDown("space");
+
+        if (Input.GetKeyDown("space") || Input.GetButtonDown(StringCollection.INPUT_RB))
+        {
+            ArcadeSight = !ArcadeSight;
+
+            if (ArcadeSight == false)
+            {
+                offsetPos = new Vector3(0, offsetPos.y, -1.4f);
+                stopMove = false;
+            }
+            else
+            {
+                stopMove = true;
+                StartCoroutine(StartArcadeMode());
+            }
+        }
+
+        if (MouseControllOn)
+        {
+            if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+            {
+                rotationX = Input.GetAxis("Mouse X") * mouseSpeedX;
+                rotationY = Input.GetAxis("Mouse Y") * -mouseSpeedY;
+            }
+        }
+
     }
 
-
+    IEnumerator StartArcadeMode()
+    {
+        yield return new WaitForSeconds(0.3f);
+        stopMove = false;
+    }
 
     // Move Camera to the player position + current offset
     //offset is modified by the rotationAroundTarget coroutine
@@ -252,7 +221,7 @@ public class CameraController : MonoBehaviour
         Vector3 dir = target.position - new Vector3(transform.position.x , target.position.y , transform.position.z);
 
         RaycastHit  hit;
-        if (Physics.Linecast(target.position, transform.position, out hit))
+        if (Physics.Linecast(target.position, transform.position, out hit,camCollision))
         {
             offsetPos = offsetPos + dir.normalized * 0.1f;
         }
@@ -264,7 +233,7 @@ public class CameraController : MonoBehaviour
             Vector3 newPos = target.position + offsetPos - dir.normalized * 0.1f;
             Debug.DrawLine(target.position, newPos); 
 
-            if (!Physics.Linecast(target.position, newPos, out hit))
+            if (!Physics.Linecast(target.position, newPos, out hit, camCollision))
             {
                 //print(hit.collider.name);
                 offsetPos = offsetPos - dir.normalized * 0.1f;

@@ -54,17 +54,17 @@ public class FuseboxController : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
         if (other.gameObject == player)
-        {       
-            
-                if (showTooltip && !isRepaired)
-                {
-                    if (playerInventory.hasFuse)
-                        Debug.Log("Press A to insert fuse.");
-                    else
-                        Debug.Log("You need the fuse to repair this fusebox.");
-                }
+        {
 
-                if (playerInventory.hasFuse && Input.GetButtonDown(StringCollection.INPUT_A) && !isRepaired)
+            if (showTooltip && !isRepaired)
+            {
+                //if (playerInventory.hasFuse)
+                //    Debug.Log("Press A to insert fuse.");
+                //else
+                //    Debug.Log("You need the fuse to repair this fusebox.");
+            }
+
+            if (playerInventory.hasFuse && Input.GetButtonDown(StringCollection.INPUT_A) && !isRepaired)
                 {
                     playerInventory.hasFuse = false;
                     showTooltip = false;

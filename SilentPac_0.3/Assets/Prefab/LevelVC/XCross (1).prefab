@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2221230624993882194}
   - component: {fileID: 3125320099002313022}
   - component: {fileID: 6879745862885187753}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: XCross (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

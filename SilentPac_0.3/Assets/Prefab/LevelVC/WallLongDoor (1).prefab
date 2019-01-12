@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 23688097693849828}
   - component: {fileID: 1995075670784592359}
   - component: {fileID: 3311550722088522765}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WallLongDoor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -134,7 +134,7 @@ public class PlayerEnergy : MonoBehaviour
     {
         if (other.tag == "ElectricRiotStick")
         {
-            Debug.Log("entered");
+            Debug.Log(other.tag);
             TakeDamage(30);
         }
     }

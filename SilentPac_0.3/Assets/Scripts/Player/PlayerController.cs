@@ -24,12 +24,12 @@ public class PlayerController : MonoBehaviour
     private bool shoot;
     private bool ArcadeSight;
     private Vector3 curCamTargetPos;
-    private SphereCollider col;
-    private List<Transform> forks = new List<Transform>();
+    public SphereCollider sphereCol;
+    public List<Transform> forks = new List<Transform>();
 
     private void Start()
     {
-        col = GetComponent<SphereCollider>();
+        sphereCol = transform.GetChild(0).GetComponent<SphereCollider>();
         playerEnergy = GetComponent<PlayerEnergy>();
         cam = Camera.main.transform.transform;
         anim = GetComponent<Animator>();
@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
        
     private void Update()
     {
-
         GetInput();
         Run(run);
         Shoot(shoot);
@@ -50,8 +49,7 @@ public class PlayerController : MonoBehaviour
             Rotation();
         }
 
-
-        if (!cam.GetComponent<CameraController>().stopArcadeMode)
+        if (!cam.GetComponent<CameraController>().stopMove)
         {
             Move();
         }
@@ -60,9 +58,9 @@ public class PlayerController : MonoBehaviour
             input = new Vector2(0, 0);
             Move();
         }
-
     }
 
+    #region Test Forks for Enemy2 (Collider)
     public Vector3 NextWayPoint()
     {
         Vector3 pos = Vector3.zero;
@@ -94,17 +92,25 @@ public class PlayerController : MonoBehaviour
             forks.Remove(other.transform);
         }
     }
+    #endregion
 
     void GetInput()
     {
         input.x = Input.GetAxisRaw(StringCollection.INPUT_HORIZONTAL);
         input.y = Input.GetAxisRaw(StringCollection.INPUT_VERTICAL);
-        run = Input.GetButton(StringCollection.INPUT_LB);      
-        shoot = Input.GetButton(StringCollection.INPUT_X);
+        //shoot = Input.GetButton(StringCollection.INPUT_X);
         pullEnergy = Input.GetButton(StringCollection.INPUT_RB);
 
+        run = Input.GetButton(StringCollection.INPUT_LB);
+
+        if (cam.transform.GetComponent<CameraController>().ArcadeSight || Input.GetKey(KeyCode.LeftShift))
+        {
+            run = true;
+        }
     }
-       
+
+    #region Actions Functions
+
     void PullEnergy(bool pull)
     {
         if (pull)
@@ -154,12 +160,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    #endregion
+
     // direction relativ to the camera`s Rotation
     void CalculateDirection()
     {
         angle = Mathf.Atan2(input.x, input.y);              // give Radians back
         angle = Mathf.Rad2Deg * angle;                      // make radians to degrees
-        angle += cam.GetComponent<CameraController>().CamEulerAngel();      // rotation relative to camera
+        angle += cam.eulerAngles.y;      // rotation relative to camera
     }
      
     //rotate toward the calculate angle
