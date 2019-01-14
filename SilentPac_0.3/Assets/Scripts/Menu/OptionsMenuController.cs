@@ -28,7 +28,7 @@ public class OptionsMenuController : MonoBehaviour
             enabled = false;
             Debug.Log("Can't load PitchTest settings.");
             return;
-        }        
+        }
     }
     
     public void SetGamma(float newGamma)    //Setzt den PostProcessing-Gamma.
@@ -56,5 +56,17 @@ public class OptionsMenuController : MonoBehaviour
     {
         Debug.Log("Setting Volume to " + volume + ".");
         audioMixer.SetFloat("volume", volume);
+    }
+
+    public void SetMusicVolume(float musicVolume)     //Setzt Volume der Music group.
+    {
+        Debug.Log("Setting Volume to " + musicVolume + ".");
+        audioMixer.SetFloat("musicVolume", musicVolume);
+    }
+
+    public void SetSoundeffectsVolume(float soundeffectsVolume)     //Setzt Volume der Soundeffects group.
+    {
+        Debug.Log("Setting Volume to " + soundeffectsVolume + ".");
+        audioMixer.SetFloat("soundeffectsVolume", soundeffectsVolume);
     }
 }

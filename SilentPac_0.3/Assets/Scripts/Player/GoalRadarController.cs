@@ -11,13 +11,13 @@ public class GoalRadarController : MonoBehaviour
     private int currentWaypoint;
 
     public Transform[] radarWayPoints;
-
+    
     void Start()
     {
         isShown = false;
         currentWaypoint = 0;
     }
-    
+
     void Update()
     {
         if (currentTarget != null)
@@ -25,12 +25,21 @@ public class GoalRadarController : MonoBehaviour
             newDirection = new Vector3(currentTarget.transform.position.x, this.transform.position.y, currentTarget.transform.position.z);
             this.transform.LookAt(newDirection);
         }
-        
+
         /* Slerp Version
         var lookPos = target.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+
+        oder so:
+        transform.rotation = Quaternion.Slerp( transform.rotation, Quaternion.LookRotation( target.transform.position - transform.position ), Time.deltaTime );
+
+        oder:
+        Vector3 direction = Point - transform.position;
+        Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
+        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, speed * Time.time);
+    
         */
     }
 
@@ -59,7 +68,7 @@ public class GoalRadarController : MonoBehaviour
 
     public void GoToNextWaypoint() //goes to the next waypoint, otherwise disables RadarCanvas
     {
-        if (currentWaypoint < radarWayPoints.Length - 1)
+        if (currentWaypoint < radarWayPoints.Length)
         {
             if (!(radarWayPoints[currentWaypoint + 1] == null))
                 GoToWaypoint(++currentWaypoint);
@@ -74,9 +83,8 @@ public class GoalRadarController : MonoBehaviour
     }
 
     public void GoToNextAvailableWaypoint() //goes to the next available waypoint from startPoint
-    {   
+    {
         GoToWaypoint(NextAvailableWaypoint());
-
         return;
     }
 
@@ -103,5 +111,9 @@ public class GoalRadarController : MonoBehaviour
         Debug.Log("Could not find a next available radar waypoint after currentWaypoint: " + currentWaypoint + ". Defaulting to radar waypoint 0.");
         return 0;
     }
-    
+
+    public void MakeWhite()
+    {        
+        //image.GetComponent<Image>().color = new Color32(255, 255, 225, 100);
+    }
 }
