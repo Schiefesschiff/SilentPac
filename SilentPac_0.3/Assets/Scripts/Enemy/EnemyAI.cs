@@ -32,7 +32,7 @@ public class EnemyAI : MonoBehaviour
     private float patrolTimer;  // timer for waittime on patrol point
     private float searchTimer;
     private int wayPointIndex;
-    public int SearchingPointIndex = 0;
+    private int SearchingPointIndex = 0;
     [HideInInspector]public bool isDeath = false;
     private bool isShocked = false;
     private float currentSpeed = 1f;
@@ -77,7 +77,7 @@ public class EnemyAI : MonoBehaviour
         {
             enemyStatus = EnemyStatus.Patrolling;
         }
-
+        
         if (isSearch && lastPlayerSighting.position == lastPlayerSighting.resetPosition && enemyStatus != EnemyStatus.Chasing)
         {
             enemyStatus = EnemyStatus.Searching;
@@ -129,6 +129,7 @@ public class EnemyAI : MonoBehaviour
         if (nav.remainingDistance > nav.stoppingDistance)       // distance between enemy / player
         {
             character.Move(nav.desiredVelocity, false, false, currentSpeed);      // for third person controller(animation)
+            //print(nav.desiredVelocity);
         }
         else
         {
@@ -139,6 +140,34 @@ public class EnemyAI : MonoBehaviour
     void Dying()
     {
         anim.SetBool("DeathTrigger", true);
+    }
+
+    private float waitTimer = 0;
+    private int waitTime = 10;
+    private int indexRotations = 3;
+    private int rotations = 0;
+    
+
+    private bool WaitRotation()
+    {
+        float rot = 1;
+        waitTimer += Time.deltaTime;
+
+        if (waitTimer > waitTime)
+        {
+            rot = Random.Range(-1,1);
+            rotations++;
+            waitTimer = 0;
+            if (rotations > indexRotations)
+            {
+                rotations = 0;
+                rot = 0;
+                return true;
+            }
+        }
+        transform.rotation = Quaternion.Euler(0, rot * 3f, 0) * transform.rotation;
+        anim.SetFloat("Turn", rot);
+        return false;
     }
 
     void Patrolling()
@@ -181,11 +210,14 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                RaycastHit hit2;
-                if (Physics.Raycast(player.position + player.up, player.forward, out hit2, Mathf.Infinity, Enemy2Mask))
+                if (enemySight.personalLastSighting != lastPlayerSighting.position)
                 {
-                    nav.destination = (hit2.transform.position + player.transform.position) / 2;
-                    testPoint = (hit2.transform.position + player.transform.position) / 2;      // for gizmo
+                    RaycastHit hit2;
+                    if (Physics.Raycast(player.position + player.up, player.forward, out hit2, Mathf.Infinity, Enemy2Mask))
+                    {
+                        nav.destination = (hit2.transform.position + player.transform.position) / 2;
+                        testPoint = (hit2.transform.position + player.transform.position) / 2;      // for gizmo
+                    }
                 }
             }
 
@@ -199,14 +231,17 @@ public class EnemyAI : MonoBehaviour
         {
             chaseTimer += Time.deltaTime;
 
+            //if (WaitRotation())
+            //{
             if (chaseTimer > chaseWaitTime)
             {
-                lastPlayerSighting.position = lastPlayerSighting.resetPosition;
-                enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
-                chaseTimer = 0f;
-                isSearch = true;
-            }
-        }
+                    lastPlayerSighting.position = lastPlayerSighting.resetPosition;
+                    enemySight.personalLastSighting = lastPlayerSighting.resetPosition;
+                    chaseTimer = 0f;
+                    isSearch = true;
+             }
+        //}
+    }
         else
         {
             chaseTimer = 0f;
@@ -218,14 +253,15 @@ public class EnemyAI : MonoBehaviour
 
     void SearchingPlayer()      
     {
+        nav.speed = chaseSpeed;
+        currentSpeed = chaseSpeed;
         // todo nächste weg gabelung suchen
         // in richtung des spielers
         if (nav.remainingDistance < nav.stoppingDistance)
         {
-            searchTimer += Time.deltaTime;
-
             if (SearchingPointIndex < SearchingPoints)     // all points searched?
             {
+                searchTimer += Time.deltaTime;
                 if (searchTimer > searchWaitTime)
                 {
                     for (int i = 0; i < lastPlayerSighting.forks.Length; i++)

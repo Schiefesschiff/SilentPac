@@ -196,7 +196,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15.48
+  m_Radius: 7.41
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &5448313216678864448
 CapsuleCollider:
@@ -208,7 +208,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
+  m_Radius: 0.42
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -270,7 +270,7 @@ MonoBehaviour:
   Enemy2Mask:
     serializedVersion: 2
     m_Bits: 3072
-  Enemy2: 1
+  Enemy2: 0
   patrolSpeed: 1.6
   chaseSpeed: 3.5
   chaseWaitTime: 5
