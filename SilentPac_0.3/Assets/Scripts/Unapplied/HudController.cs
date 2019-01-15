@@ -111,6 +111,5 @@ public class HudController : MonoBehaviour
     {
         buttonImage.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
     }
-
-
+    
 }

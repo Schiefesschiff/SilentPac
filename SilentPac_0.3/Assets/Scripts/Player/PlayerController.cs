@@ -163,7 +163,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             anim.SetBool("Shoot", false);
-
         }
     }
 
@@ -181,8 +180,7 @@ public class PlayerController : MonoBehaviour
     void Rotation()
     {
         targetRotation = Quaternion.Euler(0, angle, 0);     // convert the euler angels to Quaternion
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-        
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);        
     }
 
     // this Player only move along its forward axis
@@ -191,7 +189,6 @@ public class PlayerController : MonoBehaviour
         CalculateSpeed(input);
         //transform.position += transform.forward * velocity * Time.deltaTime;
         anim.SetFloat("Vertical", ForwardSpeed, speedDampTime, Time.deltaTime);
-
     }
 
     void CalculateSpeed(Vector2 input)

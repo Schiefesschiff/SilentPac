@@ -13,6 +13,9 @@ public class PlayerEnergy : MonoBehaviour
     private HudController hud;
     private int reduceValueStamina;
     private Animator ani;
+    
+    private float reduceTimer;
+
     private void Awake()
     {
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HudController>();
@@ -20,8 +23,6 @@ public class PlayerEnergy : MonoBehaviour
         currentHealth = maxHealth;
         currentStanima = maxStanima;
     }
-
-    private float reduceTimer;
 
     private void Update()
     {

@@ -10,13 +10,14 @@ public class DooropenerInteraction : MonoBehaviour
     private PlayerInventory playerInventory;
     public GameObject door;
     private DoorController doorController;
+    private GameObject radar;
+    private GoalRadarController goalRadarController;
     public HudController hudController;
     public Canvas canvas;
     public DooropenerPopupController dooropenerPopupController;
 
     private bool showPopup;
     public bool isDoorOpen;
-
     public bool hasEnergy;
 
     void Awake()
@@ -28,16 +29,15 @@ public class DooropenerInteraction : MonoBehaviour
 
         door = GameObject.FindGameObjectWithTag("Door");
         doorController = door.GetComponent<DoorController>();
-
+        
         dooropenerPopupController = canvas.GetComponent<DooropenerPopupController>();
 
-        //getComponent<SKRIPTNAME>().VARIABLE;
-
+        radar = GameObject.FindGameObjectWithTag("Radar");
+        goalRadarController = radar.GetComponent<GoalRadarController>();
+        
         showPopup = false;
         isDoorOpen = false;
-        
         hasEnergy = false;
-
     }
 
     void Update()
@@ -86,12 +86,7 @@ public class DooropenerInteraction : MonoBehaviour
 
                 if (playerInventory.hasKey && Input.GetButtonDown(StringCollection.INPUT_A) && !isDoorOpen)
                 {
-                    playerInventory.RemoveKeyFromInventory();
-                    hudController.RemoveKeyFromInventoryUI();
-                    doorController.OpenDoor();
-                    isDoorOpen = true;
-                    Debug.Log("I opened the door (sneak, totally didn't)");
-                    dooropenerPopupController.ChangePopup(3);
+                    OpenSesame();
                 }
 
                 //AudioSource.PlayClipAtPoint(keyDrop, transform.position);
@@ -99,7 +94,18 @@ public class DooropenerInteraction : MonoBehaviour
         }
         
     }
-    
+
+    public void OpenSesame()
+    {
+        playerInventory.RemoveKeyFromInventory();
+        hudController.RemoveKeyFromInventoryUI();
+        doorController.OpenDoor();
+        isDoorOpen = true;
+        goalRadarController.GoToNextAvailableWaypoint();
+        Debug.Log("I opened the door (sneak, totally didn't)");
+        dooropenerPopupController.ChangePopup(3);
+    }
+
     public void TurnOn()
     {
         hasEnergy = true;

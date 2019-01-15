@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1539500149270044626
 Transform:
   m_ObjectHideFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539500149270044631}
-  m_LocalRotation: {x: -0, y: -0.8971048, z: -0, w: 0.44181782}
+  m_LocalRotation: {x: 0, y: -0.8971042, z: 0, w: 0.4418191}
   m_LocalPosition: {x: 26.62, y: 19.42, z: -1.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -159,8 +159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRepaired: 0
-  dooropener: {fileID: 0}
-  hudController: {fileID: 0}
 --- !u!1 &2945920804352426541
 GameObject:
   m_ObjectHideFlags: 0
