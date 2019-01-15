@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GoalRadarController : MonoBehaviour
 {
@@ -11,11 +12,16 @@ public class GoalRadarController : MonoBehaviour
     private int currentWaypoint;
 
     public Transform[] radarWayPoints;
-    
+    public Image radarImage;
+
     void Start()
     {
         isShown = false;
         currentWaypoint = 0;
+
+        radarImage = this.GetComponentInChildren<Image>();
+        
+        MakeOrange(); //demo purposes
     }
 
     void Update()
@@ -112,8 +118,45 @@ public class GoalRadarController : MonoBehaviour
         return 0;
     }
 
-    public void MakeWhite()
-    {        
-        //image.GetComponent<Image>().color = new Color32(255, 255, 225, 100);
+    public void MakeOrange() //preserves alpha from radarImage
+    {
+        var orangeColor = radarImage.color;
+        orangeColor.r = 255;
+        orangeColor.g = 147;
+        orangeColor.b = 0;
+        radarImage.color = orangeColor;
+    }
+
+    public void MakeRed() //preserves alpha from radarImage
+    {
+        var redColor = radarImage.color;
+        redColor.r = 255;
+        redColor.g = 0;
+        redColor.b = 0;
+        radarImage.color = redColor;
+    }
+
+    public void MakeWhite() //preserves alpha from radarImage
+    {
+        var whiteColor = radarImage.color;
+        whiteColor.r = 255;
+        whiteColor.g = 255;
+        whiteColor.b = 255;
+        radarImage.color = whiteColor;
+    }
+
+    public void SetAlpha(float newAlpha) //preserves color from radarImage
+    {
+        var alphaColor = radarImage.color;
+        alphaColor.a = newAlpha;
+        radarImage.color = alphaColor;
+    }
+
+    public void ChangeColor(int newColorIndex, int newColorValue) //Access the r, g, b,a components using [0], [1], [2], [3] respectively.
+    {
+        var newColor = radarImage.color;
+        newColor[newColorIndex] = newColorValue;
+        radarImage.color = newColor;
     }
 }
+

@@ -19,10 +19,10 @@ public class pauseMenuController : MonoBehaviour
     }
 
     private void Update()
-    {
+    {   // || Input.GetKeyDown(StringCollection.INPUT_START)
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isGamePaused)
+            if (isGamePaused && pauseMenuUI.activeSelf)
             {
                 ResumeGame();
             }
@@ -47,7 +47,7 @@ public class pauseMenuController : MonoBehaviour
         //hudCanvas.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        isGamePaused = true;        
+        isGamePaused = true;
     }
 
     public void RestartLevel()
