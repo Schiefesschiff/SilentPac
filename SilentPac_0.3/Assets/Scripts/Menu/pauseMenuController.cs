@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class pauseMenuController : MonoBehaviour
+public class PauseMenuController : MonoBehaviour
 {
     public static bool isGamePaused = false;
 
@@ -52,18 +52,21 @@ public class pauseMenuController : MonoBehaviour
 
     public void RestartLevel()
     {
+        ResumeGame();
         Debug.Log("Restarting level.");
         SceneManager.LoadScene(1);
     }
 
     public void ExitToMenu()
     {
+        ResumeGame();
         Debug.Log("Loading MenuScene.");
         SceneManager.LoadScene(0);
     }
 
     public void ExitGame()
     {
+        ResumeGame();
         Debug.Log("Quitting Game.");
         Application.Quit();
     }
