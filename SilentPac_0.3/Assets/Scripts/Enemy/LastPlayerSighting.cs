@@ -5,7 +5,6 @@ using UnityEngine;
 public class LastPlayerSighting : MonoBehaviour
 {
     public Vector3 position = new Vector3(1000f, 1000f, 1000f);
-    public Vector3 positionEnemy2 = new Vector3(1000f, 1000f, 1000f);
     public Vector3 resetPosition = new Vector3(1000f, 1000f, 1000f);
     public float lightHighIntensity = 0.25f;
     public float lightLowIntensity = 0f;
@@ -62,17 +61,28 @@ public class LastPlayerSighting : MonoBehaviour
             lightHighIntensity -= 0.1f;
         }
 
-        if (playerController.pullEnergy)
+
+        bool isPullEng = false;
+
+        if (playerController.pullEnergy)        // activation Alarm after 2 seconds with pull Energy
         {
             timeLeft -= Time.deltaTime;
             if (timeLeft <= 0)
             {
                 position = player.transform.position;
+                timeLeft = delayAlarmTimer;
+                isPullEng = true;
             }
         }
         else
         {
             timeLeft = delayAlarmTimer;
+            isPullEng = false;
+        }
+
+        if (isPullEng == true)
+        {
+            position = player.transform.position;
         }
     }
 

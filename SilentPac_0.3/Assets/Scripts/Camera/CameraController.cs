@@ -74,7 +74,7 @@ public class CameraController : MonoBehaviour
 
     void MoveToSecondPos()
     {
-        this.transform.position = Vector3.Lerp(this.transform.position, target.position + new Vector3(0, heigthPos, 0), 5 * Time.deltaTime);
+        this.transform.position = Vector3.Lerp(this.transform.position, target.position + new Vector3(0, heigthPos, 0), 2f * Time.deltaTime);
         this.transform.eulerAngles = new Vector3(90, 0, 0);
     }
 

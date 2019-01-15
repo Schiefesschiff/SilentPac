@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 curCamTargetPos;
     public SphereCollider sphereCol;
     public List<Transform> forks = new List<Transform>();
+    public List<Transform> enemiesClose = new List<Transform>();
+
 
     private void Start()
     {
@@ -102,6 +104,11 @@ public class PlayerController : MonoBehaviour
         pullEnergy = Input.GetButton(StringCollection.INPUT_RB);
 
         run = Input.GetButton(StringCollection.INPUT_LB);
+
+        if (Input.GetButtonDown(StringCollection.INPUT_X) || Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            shoot = true;
+        }
 
         if (cam.transform.GetComponent<CameraController>().ArcadeSight || Input.GetKey(KeyCode.LeftShift))
         {
