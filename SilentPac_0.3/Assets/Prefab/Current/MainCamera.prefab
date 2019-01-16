@@ -100,7 +100,7 @@ MonoBehaviour:
   camCollision:
     serializedVersion: 2
     m_Bits: 3072
-  MouseControllOn: 0
+  MouseControllOn: 1
   target: {fileID: 0}
   offsetPos: {x: 2, y: 0, z: 0}
   AutoSmoothnessCameraMove: 20
@@ -209,7 +209,7 @@ MonoBehaviour:
       farClipPlaneDistance: 50
       density: 0.25
       anisotropy: 0.5
-      color: {r: 0.00028538704, g: 0, b: 0.25, a: 1}
+      color: {r: 0.0027840137, g: 0, b: 0.25, a: 1}
       colorStrength: 0.25
     _computeMaximumDepthComputeShader: {fileID: 7200000, guid: a5d52c8a306e8b746ab60b306575aa3e,
       type: 3}
