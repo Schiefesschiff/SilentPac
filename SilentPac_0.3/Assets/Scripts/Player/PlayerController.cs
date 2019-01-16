@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public SphereCollider sphereCol;
     public List<Transform> forks = new List<Transform>();
     public List<Transform> enemiesClose = new List<Transform>();
-
+    public ParticleSystem particelSphere;
 
     private void Start()
     {
@@ -40,10 +40,14 @@ public class PlayerController : MonoBehaviour
        
     private void Update()
     {
+
+        particelSphere.Play(true);
+
+
         GetInput();
         Run(run);
         Shoot(shoot);
-        PullEnergy(pullEnergy);
+        //PullEnergy(pullEnergy);
 
         if (input.x != 0f || input.y != 0f)
         {
@@ -100,15 +104,15 @@ public class PlayerController : MonoBehaviour
     {
         input.x = Input.GetAxisRaw(StringCollection.INPUT_HORIZONTAL);
         input.y = Input.GetAxisRaw(StringCollection.INPUT_VERTICAL);
-        //shoot = Input.GetButton(StringCollection.INPUT_X);
-        pullEnergy = Input.GetButton(StringCollection.INPUT_RB);
+        shoot = Input.GetButtonDown(StringCollection.INPUT_X) || Input.GetKeyDown(KeyCode.LeftShift);
+        //pullEnergy = Input.GetButton(StringCollection.INPUT_RB);
 
         run = Input.GetButton(StringCollection.INPUT_LB);
 
-        if (Input.GetButtonDown(StringCollection.INPUT_X) || Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            shoot = true;
-        }
+        //if (Input.GetButtonDown(StringCollection.INPUT_X) || Input.GetKeyDown(KeyCode.LeftShift))
+        //{
+        //    shoot = true;
+        //}
 
         if (cam.transform.GetComponent<CameraController>().ArcadeSight || Input.GetKey(KeyCode.LeftShift))
         {
@@ -152,21 +156,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+
     void Shoot(bool shoot)
     {
         if (shoot && playerEnergy.currentHealth > 0)
         {
             anim.SetBool("Shoot", true);
-            anim.SetBool("PullEnergy", false);
-            ParticelPullEnergy.SetActive(true);
+            particelSphere.Play(true);
         }
         else
         {
             anim.SetBool("Shoot", false);
+            particelSphere.Play(false);
         }
     }
 
     #endregion
+    #region Movement Player
 
     // direction relativ to the camera`s Rotation
     void CalculateDirection()
@@ -196,4 +203,5 @@ public class PlayerController : MonoBehaviour
         ForwardSpeed = Mathf.Sqrt(input.x * input.x + input.y * input.y);      // speed from stick ( controller)
         //print(ForwardSpeed);
     }
+    #endregion
 }
