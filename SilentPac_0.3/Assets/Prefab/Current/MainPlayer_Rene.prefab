@@ -1926,6 +1926,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 613018642}
     m_Modifications:
+    - target: {fileID: 1501349682030831478, guid: 647d8816af179394faf2decc15ad8c6b,
+        type: 3}
+      propertyPath: m_Name
+      value: Radar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501349682030831477, guid: 647d8816af179394faf2decc15ad8c6b,
+        type: 3}
+      propertyPath: radarWayPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501349682030831477, guid: 647d8816af179394faf2decc15ad8c6b,
+        type: 3}
+      propertyPath: radarImage
+      value: 
+      objectReference: {fileID: 1201922416}
     - target: {fileID: 1501349682030831465, guid: 647d8816af179394faf2decc15ad8c6b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1989,7 +2004,7 @@ PrefabInstance:
     - target: {fileID: 1501349682030831465, guid: 647d8816af179394faf2decc15ad8c6b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.7349787
+      value: 0.131
       objectReference: {fileID: 0}
     - target: {fileID: 1501349682030831465, guid: 647d8816af179394faf2decc15ad8c6b,
         type: 3}
@@ -2031,10 +2046,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1501349682030831478, guid: 647d8816af179394faf2decc15ad8c6b,
+    - target: {fileID: 1501349681035056739, guid: 647d8816af179394faf2decc15ad8c6b,
         type: 3}
-      propertyPath: m_Name
-      value: Radar
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1501349681035056748, guid: 647d8816af179394faf2decc15ad8c6b,
         type: 3}
@@ -2051,26 +2066,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 1501349681035056739, guid: 647d8816af179394faf2decc15ad8c6b,
+    - target: {fileID: 1501349681726169867, guid: 647d8816af179394faf2decc15ad8c6b,
         type: 3}
-      propertyPath: m_Color.g
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1501349681035056739, guid: 647d8816af179394faf2decc15ad8c6b,
+    - target: {fileID: 1501349681726169867, guid: 647d8816af179394faf2decc15ad8c6b,
         type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501349682030831477, guid: 647d8816af179394faf2decc15ad8c6b,
-        type: 3}
-      propertyPath: radarWayPoints.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501349682030831477, guid: 647d8816af179394faf2decc15ad8c6b,
-        type: 3}
-      propertyPath: radarImage
+      propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1201922416}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501349681726169867, guid: 647d8816af179394faf2decc15ad8c6b,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 647d8816af179394faf2decc15ad8c6b, type: 3}
 --- !u!224 &50958458 stripped

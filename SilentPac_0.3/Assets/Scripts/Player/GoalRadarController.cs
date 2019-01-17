@@ -7,21 +7,27 @@ public class GoalRadarController : MonoBehaviour
 {
     Vector3 newDirection;
     private bool isShown;
-    public Transform currentTarget;
+    private Transform currentTarget;
 
     private int currentWaypoint;
 
     public Transform[] radarWayPoints;
     public Image radarImage;
 
+    private LastPlayerSighting lastPlayerSighting;
+    private bool isAlarmOn;
+
     void Start()
     {
         isShown = false;
         currentWaypoint = 0;
+        currentTarget = radarWayPoints[currentWaypoint];
 
-        radarImage = this.GetComponentInChildren<Image>();
+        //radarImage = this.GetComponentInChildren<Image>();
+
+        lastPlayerSighting = GameObject.FindGameObjectWithTag("GameController").GetComponent<LastPlayerSighting>();
+        isAlarmOn = false;
         
-        MakeOrange(); //demo purposes
     }
 
     void Update()
@@ -32,6 +38,16 @@ public class GoalRadarController : MonoBehaviour
             this.transform.LookAt(newDirection);
         }
 
+        if (isAlarmOn == false && lastPlayerSighting.position != lastPlayerSighting.resetPosition)
+        {
+            TurnAlarmOn();
+        }
+
+        if (isAlarmOn == false && lastPlayerSighting.position == lastPlayerSighting.resetPosition)
+        {
+            TurnAlarmOff();
+        }
+        
         /* Slerp Version
         var lookPos = target.position - transform.position;
         lookPos.y = 0;
@@ -45,7 +61,6 @@ public class GoalRadarController : MonoBehaviour
         Vector3 direction = Point - transform.position;
         Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, speed * Time.time);
-    
         */
     }
 
@@ -118,7 +133,7 @@ public class GoalRadarController : MonoBehaviour
         return 0;
     }
 
-    public void MakeOrange() //preserves alpha from radarImage
+    public void MakeOrange() ///preserves alpha from radarImage
     {
         var orangeColor = radarImage.color;
         orangeColor.r = 255;
@@ -127,7 +142,7 @@ public class GoalRadarController : MonoBehaviour
         radarImage.color = orangeColor;
     }
 
-    public void MakeRed() //preserves alpha from radarImage
+    public void MakeRed() ///preserves alpha from radarImage
     {
         var redColor = radarImage.color;
         redColor.r = 255;
@@ -136,7 +151,7 @@ public class GoalRadarController : MonoBehaviour
         radarImage.color = redColor;
     }
 
-    public void MakeWhite() //preserves alpha from radarImage
+    public void MakeWhite() ///preserves alpha from radarImage
     {
         var whiteColor = radarImage.color;
         whiteColor.r = 255;
@@ -145,18 +160,28 @@ public class GoalRadarController : MonoBehaviour
         radarImage.color = whiteColor;
     }
 
-    public void SetAlpha(float newAlpha) //preserves color from radarImage
+    public void SetAlpha(float newAlpha) ///preserves color from radarImage
     {
         var alphaColor = radarImage.color;
         alphaColor.a = newAlpha;
         radarImage.color = alphaColor;
     }
 
-    public void ChangeColor(int newColorIndex, int newColorValue) //Access the r, g, b,a components using [0], [1], [2], [3] respectively.
+    public void ChangeColor(int newColorIndex, int newColorValue) //Access the r, g, b, a components using [0], [1], [2], [3] respectively.
     {
         var newColor = radarImage.color;
         newColor[newColorIndex] = newColorValue;
         radarImage.color = newColor;
+    }
+
+    public void TurnAlarmOn()
+    {
+        MakeRed();
+    }
+
+    public void TurnAlarmOff()
+    {
+        MakeWhite();
     }
 }
 

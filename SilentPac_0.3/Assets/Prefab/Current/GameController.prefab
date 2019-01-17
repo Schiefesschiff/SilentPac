@@ -80,7 +80,8 @@ AudioSource:
   m_GameObject: {fileID: 182293039}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243036708410719970, guid: 1018bf6dc7661704ca12996beecaa9fd,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.229
@@ -212,7 +213,8 @@ AudioSource:
   m_GameObject: {fileID: 6351208848770218613}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243999862536146216, guid: 1018bf6dc7661704ca12996beecaa9fd,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 24b23a6ccb464a041b5455c73a512a54, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -312,9 +314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 1000, y: 1000, z: 1000}
-  positionEnemy2: {x: 1000, y: 1000, z: 1000}
   resetPosition: {x: 1000, y: 1000, z: 1000}
-  lightHighIntensity: 0.1
+  lightHighIntensity: 0
   lightLowIntensity: 0
   fadeSpeed: 2
   musicFadeSpeed: 1
@@ -472,7 +473,8 @@ AudioSource:
   m_GameObject: {fileID: 6351208849479954959}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243999862536146216, guid: 1018bf6dc7661704ca12996beecaa9fd,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: aba2e808b5b9a994ba7a0f5b2abeb334, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0

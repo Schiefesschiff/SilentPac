@@ -10,9 +10,21 @@ public class OptionsMenuController : MonoBehaviour
     public PostProcessVolume postProcessVolume;
     public ColorGrading colorGrading;
     private Vector4 newGammaVector;
-
+    /*
+    public GameObject pauseMenuMain;
+    public GameObject pauseMenuControls;
+    */
     private void Start()
     {
+        //pauseMenuMain = GameObject.Find("PauseMenuMain");
+        //pauseMenuControls = GameObject.Find("PauseMenuControls");
+        /*
+        if (!pauseMenuMain)
+            Debug.Log("OptionsMenuController couldn't find PauseMenuMain.");
+        
+        if (!pauseMenuControls)
+            Debug.Log("OptionsMenuController couldn't find PauseMenuControls.");
+        */
         postProcessVolume = GameObject.FindGameObjectWithTag("GameController").GetComponent<PostProcessVolume>();
 
         if (postProcessVolume.sharedProfile == null)     //Testet ob ein PostProcessVolume gefunden wurde.
@@ -22,7 +34,7 @@ public class OptionsMenuController : MonoBehaviour
             return;
         }
         
-        bool foundEffectSettings = postProcessVolume.sharedProfile.TryGetSettings<ColorGrading>(out colorGrading);     //Testet ob die colorGrading Settings angesprochen werden können.
+        bool foundEffectSettings = postProcessVolume.sharedProfile.TryGetSettings<ColorGrading>(out colorGrading); //Testet ob die colorGrading Settings angesprochen werden können.
         if (!foundEffectSettings)
         {
             enabled = false;
@@ -30,7 +42,22 @@ public class OptionsMenuController : MonoBehaviour
             return;
         }
     }
-    
+    /*
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && gameObject.activeSelf)
+        {
+            pauseMenuMain.SetActive(true);
+            gameObject.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && pauseMenuControls.activeSelf)
+        {
+            pauseMenuMain.SetActive(true);
+            pauseMenuControls.SetActive(false);
+        }
+    }
+    */
     public void SetGamma(float newGamma)    //Setzt den PostProcessing-Gamma.
     {
         if (postProcessVolume.sharedProfile.TryGetSettings<ColorGrading>(out colorGrading))

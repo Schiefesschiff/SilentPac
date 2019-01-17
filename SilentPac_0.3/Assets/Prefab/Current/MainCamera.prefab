@@ -100,7 +100,7 @@ MonoBehaviour:
   camCollision:
     serializedVersion: 2
     m_Bits: 3072
-  MouseControllOn: 0
+  MouseControllOn: 1
   target: {fileID: 0}
   offsetPos: {x: 2, y: 0, z: 0}
   AutoSmoothnessCameraMove: 20

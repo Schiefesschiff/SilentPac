@@ -27,8 +27,7 @@ public class PlayerController : MonoBehaviour
     public SphereCollider sphereCol;
     public List<Transform> forks = new List<Transform>();
     public List<Transform> enemiesClose = new List<Transform>();
-
-
+    
     private void Start()
     {
         sphereCol = transform.GetChild(0).GetComponent<SphereCollider>();

@@ -24,5 +24,4 @@ public class StringCollection
     public const string INPUT_START = "Start";              //Button 7 //Keyboard: escape
     public const string INPUT_LSTICKPRESS = "LStickpress";  //Button 8
     public const string INPUT_RSTICKPRESS = "RStickpress";  //Button 9
-
 }

@@ -15,7 +15,7 @@ public class HudController : MonoBehaviour
     public Image energyBar;
     //public TextMeshProUGUI myTextMeshProGui;
 
-    private bool healthWippeDown = true; //Testfunktion
+    //private bool healthWippeDown = true; //Testfunktion
 
     [Header("Inventory")]
     public Image keyImage;
@@ -29,7 +29,7 @@ public class HudController : MonoBehaviour
 
     private PlayerEnergy playerEnergy;
 
-    void Start()
+    private void Start()
     {
         playerEnergy = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerEnergy>();
         keyImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);
@@ -41,7 +41,7 @@ public class HudController : MonoBehaviour
         energy = maxEnergy;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         //need to get health and energy from the playerController here
 
@@ -80,8 +80,7 @@ public class HudController : MonoBehaviour
         health = _health / maxHealth;
         energy = _energy / maxEnergy;
     }
-
-
+    
     public void AddKeyToInventoryUI()
     {
         keyImage.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
@@ -104,7 +103,7 @@ public class HudController : MonoBehaviour
 
     public void MakeButtonDark(Image buttonImage)
     {
-        buttonImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);
+        buttonImage.GetComponent<Image>().color = new Color32(100, 100, 100, 100);//soll hier wirklich die alpha runter?
     }
 
     public void MakeButtonBright(Image buttonImage)
