@@ -1,54 +1,15 @@
 fileFormatVersion: 2
-guid: 7706d94378ed69440b3ac58a6cf9b469
+guid: f3a4c22a6dcd92d44af457d41cdc7ad7
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: CornerWall
-    100002: EndWall.001
-    100004: SingleWallLongHalf
-    100006: TCross
-    100008: WallLong
-    100010: WallLongDoor
-    100012: WallShort
-    100014: //RootNode
-    100016: XCross
-    400000: CornerWall
-    400002: EndWall.001
-    400004: SingleWallLongHalf
-    400006: TCross
-    400008: WallLong
-    400010: WallLongDoor
-    400012: WallShort
-    400014: //RootNode
-    400016: XCross
-    2100000: OrangeEmissWall01
-    2100002: TextureMatWall01
-    2100004: BaseMatWall01
-    2100006: RedEmissWall01
-    2300000: CornerWall
-    2300002: EndWall.001
-    2300004: SingleWallLongHalf
-    2300006: TCross
-    2300008: WallLong
-    2300010: WallLongDoor
-    2300012: WallShort
-    2300014: XCross
-    3300000: CornerWall
-    3300002: EndWall.001
-    3300004: SingleWallLongHalf
-    3300006: TCross
-    3300008: WallLong
-    3300010: WallLongDoor
-    3300012: WallShort
-    3300014: XCross
-    4300000: EndWall.001
-    4300002: CornerWall
-    4300004: WallLongDoor
-    4300006: WallLong
-    4300008: WallShort
-    4300010: TCross
-    4300012: XCross
-    4300014: SingleWallLongHalf
+    100000: //RootNode
+    400000: //RootNode
+    2100000: BaseMatWall01
+    2100002: OrangeEmissWall01
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Plane
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -60,16 +21,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: OrangeEmissWall01
     second: {fileID: 2100000, guid: 7eb569c484d5ed6459f0b915a13a3779, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: RedEmissWall01
-    second: {fileID: 2100000, guid: 9e8209e75b9229845b7118bba0ea1231, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TextureMatWall01
-    second: {fileID: 2100000, guid: 97d108c1446fa4048a694ca36afefc46, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -100,7 +51,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
