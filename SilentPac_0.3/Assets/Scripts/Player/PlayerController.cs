@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public SphereCollider sphereCol;
     public List<Transform> forks = new List<Transform>();
     public List<Transform> enemiesClose = new List<Transform>();
-    public ParticleSystem particelSphere;
+    public Transform particelSphere;
 
     private void Start()
     {
@@ -40,10 +40,6 @@ public class PlayerController : MonoBehaviour
        
     private void Update()
     {
-
-        particelSphere.Play(true);
-
-
         GetInput();
         Run(run);
         Shoot(shoot);
@@ -163,14 +159,19 @@ public class PlayerController : MonoBehaviour
         if (shoot && playerEnergy.currentHealth > 0)
         {
             anim.SetBool("Shoot", true);
-            particelSphere.Play(true);
         }
         else
         {
             anim.SetBool("Shoot", false);
-            particelSphere.Play(false);
         }
     }
+
+    public void SphereParitcelStart()       // Controll from Animation Event
+    {
+        particelSphere.GetComponent<SphereParticelColllisionScript>().PlaySphereParticel();
+    }
+
+
 
     #endregion
     #region Movement Player

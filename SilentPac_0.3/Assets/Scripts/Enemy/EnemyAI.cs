@@ -17,7 +17,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private int SearchingPoints = 3;
 
     public Transform[] patrolWayPoints;
-
+    public GameObject electricShock;
     private ThirdPersonCharacter character;
     private EnemySight enemySight;
     private NavMeshAgent nav;
@@ -36,7 +36,7 @@ public class EnemyAI : MonoBehaviour
     [HideInInspector]public bool isDeath = false;
     private bool isShocked = false;
     private float currentSpeed = 1f;
-    public bool isSearch = false;
+    private bool isSearch = false;
 
 
 
@@ -63,6 +63,13 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            electricShock.SetActive(true);
+        }
+
+
+
         anim.SetBool("Attack", false);
 
         if (enemySight.playerInSight && playerEnergy.currentHealth > 0)
@@ -329,11 +336,12 @@ public class EnemyAI : MonoBehaviour
     {
         isShocked = false;
         anim.SetBool("isShocked", false);
+        electricShock.SetActive(false);
     }
 
     void Shocked()
     {
+        electricShock.SetActive(true);
         anim.SetBool("isShocked", true);
     }
-
 }
