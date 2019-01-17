@@ -7,28 +7,49 @@ public class PauseMenuController : MonoBehaviour
 {
     public static bool isGamePaused = false;
 
-    public GameObject pauseMenuUI;
+    public GameObject pauseMenuMain;
+    public GameObject pauseMenuOptions;
+    public GameObject pauseMenuControls;
 
     //private GameObject hud;
     //private Canvas hudCanvas;
 
-    private void Awake()
+    private void Start()
     {
+        //this.transform.FindChild("PauseMenuMain").gameObject;
+        
+        //GameObject pauseMenuMain = this.transform.GetChild(0).gameObject;
+        //GameObject pauseMenuOptions = this.transform.GetChild(1).gameObject;
+
+        //pauseMenuMain = GameObject.Find("PauseMenuMain");
+        //pauseMenuOptions = GameObject.Find("PauseMenuOptions");
+
         //hud = GameObject.FindGameObjectWithTag("HUD");
         //hudCanvas = hud.GetComponent<Canvas>();
     }
 
     private void Update()
-    {   // || Input.GetKeyDown(StringCollection.INPUT_START)
-        if (Input.GetKeyDown(KeyCode.Escape))
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) //PauseMenu navigation.
         {
-            if (isGamePaused && pauseMenuUI.activeSelf)
-            {
-                ResumeGame();
-            }
-            else
+            if (!isGamePaused)
             {
                 PauseGame();
+            }
+            else if (pauseMenuMain.activeSelf) //main to game
+            {
+                Debug.Log("Resuming Game.");
+                ResumeGame();
+            }
+            else if (pauseMenuOptions.activeSelf) //options to main
+            {
+                pauseMenuOptions.SetActive(false);
+                pauseMenuMain.SetActive(true);
+            }
+            else if (pauseMenuControls.activeSelf) //controls to main
+            {
+                pauseMenuControls.SetActive(false);
+                pauseMenuMain.SetActive(true);
             }
         }
     }
@@ -36,7 +57,7 @@ public class PauseMenuController : MonoBehaviour
     public void ResumeGame()
     {
         Debug.Log("Unpausing Game.");
-        pauseMenuUI.SetActive(false);
+        pauseMenuMain.SetActive(false);
         Time.timeScale = 1f;
         isGamePaused = false;
     }
@@ -45,7 +66,7 @@ public class PauseMenuController : MonoBehaviour
     {
         Debug.Log("Pausing Game.");
         //hudCanvas.SetActive(false);
-        pauseMenuUI.SetActive(true);
+        pauseMenuMain.SetActive(true);
         Time.timeScale = 0f;
         isGamePaused = true;
     }
@@ -53,8 +74,8 @@ public class PauseMenuController : MonoBehaviour
     public void RestartLevel()
     {
         ResumeGame();
-        Debug.Log("Restarting level.");
-        SceneManager.LoadScene(1);
+        Debug.Log("Restarting current level.");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ExitToMenu()
